@@ -1,6 +1,6 @@
-package com.ordering.system.repository;
+package com.ordering.system.repositories;
 
-import com.ordering.system.domain.Category;
+import com.ordering.system.domains.Category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

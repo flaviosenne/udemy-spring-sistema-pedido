@@ -1,4 +1,4 @@
-package com.ordering.system.domain;
+package com.ordering.system.domains;
 
 import java.io.Serializable;
 

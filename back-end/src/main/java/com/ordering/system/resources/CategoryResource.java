@@ -3,27 +3,26 @@ package com.ordering.system.resources;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ordering.system.domain.Category;
+import com.ordering.system.domains.Category;
+import com.ordering.system.services.CategoryService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/categories")
 public class CategoryResource {
+
+    @Autowired
+    private CategoryService categoryService;
     
-    @GetMapping
-    public List<Category> list(){
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Category> findById(@PathVariable Integer id){
 
-        Category category1 = new Category(1, "Informática");
-        Category category2 = new Category(2, "Escritório");
-
-        List<Category> listCategories = new ArrayList<>();
-
-        listCategories.add(category1);
-        listCategories.add(category2);
-
-        return listCategories;
+        return this.categoryService.findCategoryById(id);
     }
 }
