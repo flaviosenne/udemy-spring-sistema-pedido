@@ -1,6 +1,5 @@
 package com.ordering.system.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.ordering.system.domains.Category;
@@ -22,5 +21,10 @@ public class CategoryService {
             return ResponseEntity.status(200).body(category.get());
 
         return ResponseEntity.status(404).body(null);
+    }
+
+    public Category saveCategory(Category category){
+        
+        return this.categoryRepository.save(category);
     }
 }
