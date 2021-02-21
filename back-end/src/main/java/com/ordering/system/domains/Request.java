@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -36,6 +38,9 @@ public class Request implements Serializable {
     @ManyToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "id")
     private Adress adress;
+
+    @OneToMany(mappedBy = "id.request")
+    private Set<RequestItem> itens = new HashSet<>();
 
     public Request(Integer id, Date dateStart, Client client, Adress adress){
         super();

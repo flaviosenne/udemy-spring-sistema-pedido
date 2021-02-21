@@ -6,11 +6,10 @@ import javax.persistence.*;
 
 
 import com.ordering.system.enums.PaymentStatus;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
+
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @NoArgsConstructor
 @EqualsAndHashCode
