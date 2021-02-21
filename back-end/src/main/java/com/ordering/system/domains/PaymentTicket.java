@@ -22,7 +22,7 @@ public class PaymentTicket extends Payment {
     private Date dueDate;
     private Date paymentDate;
 
-    public PaymentTicket(Integer id, PaymentStatus status, Order order, Date dueDate, Date paymentDate ){
+    public PaymentTicket(Integer id, PaymentStatus status, Request order, Date dueDate, Date paymentDate ){
         super(id, status, order);
         this.dueDate = dueDate;
         this.paymentDate = paymentDate;

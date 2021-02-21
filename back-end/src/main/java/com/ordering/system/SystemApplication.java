@@ -2,12 +2,7 @@ package com.ordering.system;
 
 import java.util.Arrays;
 
-import com.ordering.system.domains.Adress;
-import com.ordering.system.domains.Category;
-import com.ordering.system.domains.City;
-import com.ordering.system.domains.Client;
-import com.ordering.system.domains.Product;
-import com.ordering.system.domains.State;
+import com.ordering.system.domains.*;
 import com.ordering.system.enums.ClientType;
 import com.ordering.system.repositories.AdressRepository;
 import com.ordering.system.repositories.CategoryRepository;
@@ -105,6 +100,8 @@ public class SystemApplication implements CommandLineRunner{
 
 	// clientRepository.saveAll(Arrays.asList(client1));
 	// adressRepository.saveAll(Arrays.asList(adress1, adress2));
+
+		Request request1 = new Request();
 }
 
 }

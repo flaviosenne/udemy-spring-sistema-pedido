@@ -2,15 +2,8 @@ package com.ordering.system.domains;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ordering.system.enums.PaymentStatus;
 
 import lombok.AllArgsConstructor;
@@ -34,11 +27,11 @@ public class Payment  implements Serializable {
 
     private PaymentStatus status;
 
-    @JsonBackReference
+
     @OneToOne
     @JoinColumn(name = "order_id")
     @MapsId
-    private Order order;
+    private Request order;
 
    
 }

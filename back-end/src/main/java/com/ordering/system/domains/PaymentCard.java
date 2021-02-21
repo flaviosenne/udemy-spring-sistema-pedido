@@ -19,7 +19,7 @@ public class PaymentCard extends Payment{
     
     private Integer numberPlots;
 
-    public PaymentCard(Integer id, PaymentStatus status, Order order, Integer numberPlots){
+    public PaymentCard(Integer id, PaymentStatus status, Request order, Integer numberPlots){
         super(id, status, order);
         this.numberPlots = numberPlots;
     }
