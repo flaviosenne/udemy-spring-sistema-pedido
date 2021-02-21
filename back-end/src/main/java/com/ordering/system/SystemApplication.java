@@ -12,6 +12,7 @@ import com.ordering.system.repositories.CityRepository;
 import com.ordering.system.repositories.ClientRepository;
 import com.ordering.system.repositories.PaymentRepository;
 import com.ordering.system.repositories.ProductRepository;
+import com.ordering.system.repositories.RequestItemRepository;
 import com.ordering.system.repositories.RequestsRepository;
 import com.ordering.system.repositories.StateRepository;
 
@@ -38,6 +39,8 @@ public class SystemApplication implements CommandLineRunner{
 	private RequestsRepository requestsRepository;
 	@Autowired
 	private PaymentRepository paymentRepository;
+	@Autowired
+	private RequestItemRepository requestItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SystemApplication.class, args);
@@ -124,6 +127,20 @@ public class SystemApplication implements CommandLineRunner{
 
 //	 this.requestsRepository.saveAll(Arrays.asList(request1, request2));
 //	 this.paymentRepository.saveAll(Arrays.asList(payment1, payment2));
+
+		RequestItem item1 = new RequestItem(p1, request1, 0.00, 1, 2000.00);
+		RequestItem item2 = new RequestItem(p3, request1, 0.00, 2, 80.00);
+		RequestItem item3 = new RequestItem(p2, request2, 100.00, 1, 800.00);
+
+		request1.getItens().addAll(Arrays.asList(item1, item2));
+		request2.getItens().addAll(Arrays.asList(item3));
+
+		p1.getItens().addAll(Arrays.asList(item1));
+		p2.getItens().addAll(Arrays.asList(item3));
+		p3.getItens().addAll(Arrays.asList(item2));
+
+		this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
+		
 }
 
 }
