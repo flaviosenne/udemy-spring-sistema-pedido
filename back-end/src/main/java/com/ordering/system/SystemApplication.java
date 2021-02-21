@@ -76,8 +76,8 @@ public class SystemApplication implements CommandLineRunner{
 	p3.getCategories().addAll(Arrays.asList(cat1));
 	
 	
-	this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-	this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
+	// this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
+	// this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
 
 	State state1 = new State();
 	State state2 = new State();
@@ -91,8 +91,8 @@ public class SystemApplication implements CommandLineRunner{
 	state1.getCities().addAll(Arrays.asList(c1, c3));
 	state2.getCities().addAll(Arrays.asList(c2));
 
-	this.stateRepository.saveAll(Arrays.asList(state1, state2));
-	this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
+	// this.stateRepository.saveAll(Arrays.asList(state1, state2));
+	// this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 	Client client1 = new Client(null, "João Silva", "joao@gmail.com", "123.456.789-00", ClientType.PHYSICAL);
 
@@ -103,8 +103,8 @@ public class SystemApplication implements CommandLineRunner{
 
 	client1.getAdresses().addAll(Arrays.asList(adress1, adress2));
 
-	clientRepository.saveAll(Arrays.asList(client1));
-	adressRepository.saveAll(Arrays.asList(adress1, adress2));
+	// clientRepository.saveAll(Arrays.asList(client1));
+	// adressRepository.saveAll(Arrays.asList(adress1, adress2));
 }
 
 }
