@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,6 +21,8 @@ import lombok.Setter;
 public class RequestItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @JsonIgnore
     @EmbeddedId
     private RequestItemPK id = new RequestItemPK();
 
@@ -39,6 +42,7 @@ public class RequestItem implements Serializable {
     public Product getProduct(){
         return this.id.getProduct();
     }
+    @JsonIgnore
     public Request getRequest(){
         return this.id.getRequest();
     }

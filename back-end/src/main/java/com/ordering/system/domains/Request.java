@@ -2,6 +2,9 @@ package com.ordering.system.domains;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +27,7 @@ public class Request implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @JsonFormat(pattern="dd/MM/yyyy HH:mm")
     @Column(name = "date_start")
     private Date dateStart;
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ordering.system.enums.PaymentStatus;
 import lombok.EqualsAndHashCode;
 
@@ -24,6 +24,7 @@ public abstract class Payment  implements Serializable {
     private Integer status;
 
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "order_id")
     @MapsId
@@ -55,11 +56,11 @@ public abstract class Payment  implements Serializable {
         this.status = status.getCode();
     }
 
-    public Request getOrder() {
+    public Request getRequest() {
         return order;
     }
 
-    public void setOrder(Request order) {
+    public void setRequest(Request order) {
         this.order = order;
     }
 }

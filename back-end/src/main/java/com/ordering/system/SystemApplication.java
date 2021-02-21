@@ -139,7 +139,7 @@ public class SystemApplication implements CommandLineRunner{
 		p2.getItens().addAll(Arrays.asList(item3));
 		p3.getItens().addAll(Arrays.asList(item2));
 
-		this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
+		// this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
 		
 }
 
