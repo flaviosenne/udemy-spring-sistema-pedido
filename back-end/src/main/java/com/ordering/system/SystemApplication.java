@@ -1,14 +1,18 @@
 package com.ordering.system;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import com.ordering.system.domains.*;
 import com.ordering.system.enums.ClientType;
+import com.ordering.system.enums.PaymentStatus;
 import com.ordering.system.repositories.AdressRepository;
 import com.ordering.system.repositories.CategoryRepository;
 import com.ordering.system.repositories.CityRepository;
 import com.ordering.system.repositories.ClientRepository;
+import com.ordering.system.repositories.PaymentRepository;
 import com.ordering.system.repositories.ProductRepository;
+import com.ordering.system.repositories.RequestsRepository;
 import com.ordering.system.repositories.StateRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,10 @@ public class SystemApplication implements CommandLineRunner{
 	private ClientRepository clientRepository;
 	@Autowired
 	private AdressRepository adressRepository;
+	@Autowired
+	private RequestsRepository requestsRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SystemApplication.class, args);
@@ -71,8 +79,8 @@ public class SystemApplication implements CommandLineRunner{
 	p3.getCategories().addAll(Arrays.asList(cat1));
 	
 	
-	// this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-	// this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
+	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
+	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
 
 	State state1 = new State();
 	State state2 = new State();
@@ -86,8 +94,8 @@ public class SystemApplication implements CommandLineRunner{
 	state1.getCities().addAll(Arrays.asList(c1, c3));
 	state2.getCities().addAll(Arrays.asList(c2));
 
-	// this.stateRepository.saveAll(Arrays.asList(state1, state2));
-	// this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
+//	 this.stateRepository.saveAll(Arrays.asList(state1, state2));
+//	 this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 	Client client1 = new Client(null, "João Silva", "joao@gmail.com", "123.456.789-00", ClientType.PHYSICAL);
 
@@ -98,10 +106,24 @@ public class SystemApplication implements CommandLineRunner{
 
 	client1.getAdresses().addAll(Arrays.asList(adress1, adress2));
 
-	// clientRepository.saveAll(Arrays.asList(client1));
-	// adressRepository.saveAll(Arrays.asList(adress1, adress2));
+//	 this.clientRepository.saveAll(Arrays.asList(client1));
+//	 this.adressRepository.saveAll(Arrays.asList(adress1, adress2));
 
-		Request request1 = new Request();
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+	Request request1 = new Request(null, sdf.parse("30/09/2020 10:30"), client1, adress1);
+	Request request2 = new Request(null, sdf.parse("27/11/2020 09:30"), client1, adress2);
+
+	Payment payment1 = new PaymentCard(null, PaymentStatus.PENDENT, request1, 6);
+	request1.setPayment(payment1);
+
+	Payment payment2 = new PaymentTicket(null, PaymentStatus.PENDENT, request2, sdf.parse("21/02/2020 00:00"), null);
+	request2.setPayment(payment2);
+
+	client1.getRequests().addAll(Arrays.asList(request1, request2));
+
+//	 this.requestsRepository.saveAll(Arrays.asList(request1, request2));
+//	 this.paymentRepository.saveAll(Arrays.asList(payment1, payment2));
 }
 
 }

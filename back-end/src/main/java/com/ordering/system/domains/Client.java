@@ -42,7 +42,7 @@ public class Client implements Serializable{
     private Set<String> phones = new HashSet<>();
 
     @OneToMany(mappedBy = "client")
-    private List<Request> orders = new ArrayList<>();
+    private List<Request> requests = new ArrayList<>();
 
 
     public Client(Integer id, String name, String email, String cpfOrCnpj, ClientType type){
@@ -75,8 +75,8 @@ public class Client implements Serializable{
     public void setPhone(Set<String> phone){
         this.phones = phone;
     } 
-    public void setOrder(List<Request> order){
-        this.orders = order;
+    public void setOrder(List<Request> requests){
+        this.requests = requests;
     }   
 
     public String getName(){
@@ -100,8 +100,8 @@ public class Client implements Serializable{
     public Set<String> getPhone(){
         return this.phones;
     }
-    public List<Request> getOrders(){
-        return this.orders;
+    public List<Request> getRequests(){
+        return this.requests;
     }
 
 }

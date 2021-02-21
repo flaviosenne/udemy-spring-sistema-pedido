@@ -1,9 +1,18 @@
 package com.ordering.system.domains;
 
 import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Date;
 
+
+@NoArgsConstructor
+@Setter
+@Getter
 @Entity
 public class Request implements Serializable {
 
@@ -27,4 +36,12 @@ public class Request implements Serializable {
     @ManyToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "id")
     private Adress adress;
+
+    public Request(Integer id, Date dateStart, Client client, Adress adress){
+        super();
+        this.id= id;
+        this.dateStart = dateStart;
+        this.client = client;
+        this.adress = adress;
+    }
 }
