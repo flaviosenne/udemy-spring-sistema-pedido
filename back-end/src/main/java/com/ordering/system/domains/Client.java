@@ -36,7 +36,7 @@ public class Client implements Serializable{
 
     private Integer type;
 
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Adress> adresses = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class Client implements Serializable{
     @CollectionTable(name = "phone")
     private Set<String> phones = new HashSet<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Requests> requests = new ArrayList<>();
 

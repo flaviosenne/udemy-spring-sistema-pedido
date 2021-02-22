@@ -40,7 +40,7 @@ public class Product  implements Serializable{
 
     private Double price;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
         name = "product_category",
@@ -49,7 +49,7 @@ public class Product  implements Serializable{
     )
     private List<Category> categories = new ArrayList<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "id.product")
     private Set<RequestItem> itens = new HashSet<>();
 

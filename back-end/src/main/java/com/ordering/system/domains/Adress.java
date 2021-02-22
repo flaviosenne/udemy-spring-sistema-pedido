@@ -41,7 +41,7 @@ public class Adress implements Serializable{
 
     private String postalCode;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;

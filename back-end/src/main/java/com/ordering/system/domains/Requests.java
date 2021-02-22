@@ -35,7 +35,6 @@ public class Requests implements Serializable {
     private Payment payment;
 
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
