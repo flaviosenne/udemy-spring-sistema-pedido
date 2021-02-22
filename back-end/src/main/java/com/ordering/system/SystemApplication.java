@@ -82,8 +82,8 @@ public class SystemApplication implements CommandLineRunner{
 	p3.getCategories().addAll(Arrays.asList(cat1));
 	
 	
-	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
+//	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
+//	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
 
 	State state1 = new State();
 	State state2 = new State();
@@ -114,32 +114,32 @@ public class SystemApplication implements CommandLineRunner{
 
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-	Request request1 = new Request(null, sdf.parse("30/09/2020 10:30"), client1, adress1);
-	Request request2 = new Request(null, sdf.parse("27/11/2020 09:30"), client1, adress2);
+	Requests requests1 = new Requests(null, sdf.parse("30/09/2020 10:30"), client1, adress1);
+	Requests requests2 = new Requests(null, sdf.parse("27/11/2020 09:30"), client1, adress2);
 
-	Payment payment1 = new PaymentCard(null, PaymentStatus.PENDENT, request1, 6);
-	request1.setPayment(payment1);
+	Payment payment1 = new PaymentCard(null, PaymentStatus.PENDENT, requests1, 6);
+	requests1.setPayment(payment1);
 
-	Payment payment2 = new PaymentTicket(null, PaymentStatus.PENDENT, request2, sdf.parse("21/02/2020 00:00"), null);
-	request2.setPayment(payment2);
+	Payment payment2 = new PaymentTicket(null, PaymentStatus.PENDENT, requests2, sdf.parse("21/02/2020 00:00"), null);
+	requests2.setPayment(payment2);
 
-	client1.getRequests().addAll(Arrays.asList(request1, request2));
+	client1.getRequests().addAll(Arrays.asList(requests1, requests2));
 
-//	 this.requestsRepository.saveAll(Arrays.asList(request1, request2));
+//	 this.requestsRepository.saveAll(Arrays.asList(requests1, requests2));
 //	 this.paymentRepository.saveAll(Arrays.asList(payment1, payment2));
 
-		RequestItem item1 = new RequestItem(p1, request1, 0.00, 1, 2000.00);
-		RequestItem item2 = new RequestItem(p3, request1, 0.00, 2, 80.00);
-		RequestItem item3 = new RequestItem(p2, request2, 100.00, 1, 800.00);
+		RequestItem item1 = new RequestItem(p1, requests1, 0.00, 1, 2000.00);
+		RequestItem item2 = new RequestItem(p3, requests1, 0.00, 2, 80.00);
+		RequestItem item3 = new RequestItem(p2, requests2, 100.00, 1, 800.00);
 
-		request1.getItens().addAll(Arrays.asList(item1, item2));
-		request2.getItens().addAll(Arrays.asList(item3));
+		requests1.getItens().addAll(Arrays.asList(item1, item2));
+		requests2.getItens().addAll(Arrays.asList(item3));
 
 		p1.getItens().addAll(Arrays.asList(item1));
 		p2.getItens().addAll(Arrays.asList(item3));
 		p3.getItens().addAll(Arrays.asList(item2));
 
-		// this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
+//		 this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
 		
 }
 

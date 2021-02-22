@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-@EqualsAndHashCode
 @NoArgsConstructor
 @Getter
 @Setter
@@ -30,10 +29,10 @@ public class RequestItem implements Serializable {
     private Integer quantity;
     private Double price;
 
-    public RequestItem(Product product, Request request, Double off, Integer quantity, Double price){
+    public RequestItem(Product product, Requests requests, Double off, Integer quantity, Double price){
         super();
         this.id.setProduct(product);
-        this.id.setRequest(request);
+        this.id.setRequests(requests);
         this.off = off;
         this.quantity = quantity;
         this.price = price;
@@ -43,7 +42,7 @@ public class RequestItem implements Serializable {
         return this.id.getProduct();
     }
     @JsonIgnore
-    public Request getRequest(){
-        return this.id.getRequest();
+    public Requests getRequest(){
+        return this.id.getRequests();
     }
 }

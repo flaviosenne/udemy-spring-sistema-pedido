@@ -19,7 +19,6 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Setter
 @Getter
 @Entity
@@ -32,6 +31,7 @@ public class City implements Serializable {
     
     private String name;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "state_id", referencedColumnName = "id")
     private State state;

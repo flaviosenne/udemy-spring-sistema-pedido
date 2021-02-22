@@ -1,6 +1,6 @@
 package com.ordering.system.services;
 
-import com.ordering.system.domains.Request;
+import com.ordering.system.domains.Requests;
 import com.ordering.system.repositories.RequestsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +13,8 @@ public class RequestsService {
     @Autowired
     RequestsRepository requestsRepository;
 
-    public ResponseEntity<Request> getRequestById(Integer id){
-        Optional<Request> request = this.requestsRepository.findById(id);
+    public ResponseEntity<Requests> getRequestById(Integer id){
+        Optional<Requests> request = this.requestsRepository.findById(id);
 
         if(request.isPresent()){
             return ResponseEntity.status(200).body(request.get());

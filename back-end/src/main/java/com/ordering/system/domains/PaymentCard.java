@@ -19,8 +19,8 @@ public class PaymentCard extends Payment{
     
     private Integer numberPlots;
 
-    public PaymentCard(Integer id, PaymentStatus status, Request order, Integer numberPlots){
-        super(id, status, order);
+    public PaymentCard(Integer id, PaymentStatus status, Requests requests, Integer numberPlots){
+        super(id, status, requests);
         this.numberPlots = numberPlots;
     }
 }

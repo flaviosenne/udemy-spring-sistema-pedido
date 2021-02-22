@@ -20,7 +20,6 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 @Setter
 @Getter
 @Entity
@@ -34,6 +33,7 @@ public class Category implements Serializable{
 
     private String name;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
     

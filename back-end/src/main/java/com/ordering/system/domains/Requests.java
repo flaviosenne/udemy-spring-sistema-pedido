@@ -19,7 +19,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-public class Request implements Serializable {
+public class Requests implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,10 +31,11 @@ public class Request implements Serializable {
     @Column(name = "date_start")
     private Date dateStart;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "request")
     private Payment payment;
 
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
@@ -43,10 +44,10 @@ public class Request implements Serializable {
     @JoinColumn(name = "adress_id", referencedColumnName = "id")
     private Adress adress;
 
-    @OneToMany(mappedBy = "id.request")
+    @OneToMany(mappedBy = "id.requests")
     private Set<RequestItem> itens = new HashSet<>();
 
-    public Request(Integer id, Date dateStart, Client client, Adress adress){
+    public Requests(Integer id, Date dateStart, Client client, Adress adress){
         super();
         this.id= id;
         this.dateStart = dateStart;

@@ -1,6 +1,6 @@
 package com.ordering.system.resources;
 
-import com.ordering.system.domains.Request;
+import com.ordering.system.domains.Requests;
 import com.ordering.system.services.RequestsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ public class ResquestsResource {
     RequestsService requestService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Request> getRequestById(@PathVariable Integer id){
+    public ResponseEntity<Requests> getRequestById(@PathVariable Integer id){
         return this.requestService.getRequestById(id);
     }
 }

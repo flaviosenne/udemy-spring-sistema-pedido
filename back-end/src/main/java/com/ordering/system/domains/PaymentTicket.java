@@ -25,8 +25,8 @@ public class PaymentTicket extends Payment {
     @JsonFormat(pattern="dd/MM/yyyy")
     private Date paymentDate;
 
-    public PaymentTicket(Integer id, PaymentStatus status, Request order, Date dueDate, Date paymentDate ){
-        super(id, status, order);
+    public PaymentTicket(Integer id, PaymentStatus status, Requests requests, Date dueDate, Date paymentDate ){
+        super(id, status, requests);
         this.dueDate = dueDate;
         this.paymentDate = paymentDate;
     }

@@ -12,19 +12,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @Embeddable
 public class RequestItemPK implements Serializable{
     
     private static final long serialVersionUID = 1L;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
     
     @ManyToOne
-    @JoinColumn(name = "request_id")
-    private Request request;
+    @JoinColumn(name = "request_id", referencedColumnName = "id")
+    private Requests requests;
 
     
 }

@@ -8,7 +8,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ordering.system.enums.ClientType;
 
 import lombok.EqualsAndHashCode;
@@ -34,7 +36,7 @@ public class Client implements Serializable{
 
     private Integer type;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Adress> adresses = new ArrayList<>();
 
@@ -42,9 +44,9 @@ public class Client implements Serializable{
     @CollectionTable(name = "phone")
     private Set<String> phones = new HashSet<>();
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "client")
-    private List<Request> requests = new ArrayList<>();
+    private List<Requests> requests = new ArrayList<>();
 
 
     public Client(Integer id, String name, String email, String cpfOrCnpj, ClientType type){
@@ -77,7 +79,7 @@ public class Client implements Serializable{
     public void setPhone(Set<String> phone){
         this.phones = phone;
     } 
-    public void setOrder(List<Request> requests){
+    public void setOrder(List<Requests> requests){
         this.requests = requests;
     }   
 
@@ -102,7 +104,7 @@ public class Client implements Serializable{
     public Set<String> getPhone(){
         return this.phones;
     }
-    public List<Request> getRequests(){
+    public List<Requests> getRequests(){
         return this.requests;
     }
 

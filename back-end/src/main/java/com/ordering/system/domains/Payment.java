@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Payment  implements Serializable {
@@ -26,14 +25,14 @@ public abstract class Payment  implements Serializable {
 
     @JsonIgnore
     @OneToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "requests_id", referencedColumnName = "id")
     @MapsId
-    private Request order;
+    private Requests request;
 
-    public Payment(Integer id, PaymentStatus status, Request order) {
+    public Payment(Integer id, PaymentStatus status, Requests request) {
         this.id = id;
         this.status = status.getCode();
-        this.order = order;
+        this.request = request;
     }
 
     public static long getSerialVersionUID() {
@@ -56,11 +55,11 @@ public abstract class Payment  implements Serializable {
         this.status = status.getCode();
     }
 
-    public Request getRequest() {
-        return order;
+    public Requests getRequest() {
+        return request;
     }
 
-    public void setRequest(Request order) {
-        this.order = order;
+    public void setRequest(Requests request) {
+        this.request = request;
     }
 }
