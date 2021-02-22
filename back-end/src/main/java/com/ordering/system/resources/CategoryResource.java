@@ -7,10 +7,10 @@ import com.ordering.system.services.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -23,5 +23,13 @@ public class CategoryResource {
     public ResponseEntity<Category> findById(@PathVariable Integer id){
 
         return this.categoryService.findCategoryById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> save(@RequestBody Category category){
+        Category categorySaved = this.categoryService.saveCategory(category);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(categorySaved.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }
