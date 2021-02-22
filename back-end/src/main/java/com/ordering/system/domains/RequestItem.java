@@ -38,6 +38,7 @@ public class RequestItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Product getProduct(){
         return this.id.getProduct();
     }

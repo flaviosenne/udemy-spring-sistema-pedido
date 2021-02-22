@@ -42,16 +42,16 @@ public class Requests implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "adress_id", referencedColumnName = "id")
-    private Adress adress;
+    private Adress deliveryAdress;
 
     @OneToMany(mappedBy = "id.requests")
     private Set<RequestItem> itens = new HashSet<>();
 
-    public Requests(Integer id, Date dateStart, Client client, Adress adress){
+    public Requests(Integer id, Date dateStart, Client client, Adress deliveryAdress){
         super();
         this.id= id;
         this.dateStart = dateStart;
         this.client = client;
-        this.adress = adress;
+        this.deliveryAdress = deliveryAdress;
     }
 }
