@@ -32,4 +32,13 @@ public class CategoryResource {
                 .buildAndExpand(categorySaved.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@PathVariable Integer id, @RequestBody Category category){
+        category.setId(id);
+        Category categorySaved = this.categoryService.updateCategory(category);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(categorySaved.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
 }
