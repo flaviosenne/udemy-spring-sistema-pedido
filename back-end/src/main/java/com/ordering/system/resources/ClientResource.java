@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import com.ordering.system.domains.Client;
 import com.ordering.system.dto.ClientDTO;
+import com.ordering.system.dto.ClientNewDTO;
 import com.ordering.system.services.ClientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +40,15 @@ public class ClientResource {
     @GetMapping(value = "/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable Integer id){
         return this.clientService.getClientById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> save(@Valid @RequestBody ClientNewDTO client){
+        Client clientConverted = this.clientService.toClient(client);
+        Client clientSaved = this.clientService.saveClient(clientConverted);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(clientSaved.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
