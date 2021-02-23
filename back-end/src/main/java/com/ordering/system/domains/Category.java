@@ -18,7 +18,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
@@ -36,5 +35,10 @@ public class Category implements Serializable{
 
     @ManyToMany(mappedBy = "categories")
     private List<Product> products = new ArrayList<>();
+
+    public Category(Integer id, String name){
+        this.id = id;
+        this.name = name;
+    }
     
 }

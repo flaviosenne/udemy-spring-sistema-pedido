@@ -75,4 +75,8 @@ public class CategoryService {
 
 
     }
+
+    public Category toCategory(CategoryDTO category){
+        return new Category(category.getId(), category.getName());
+    }
 }
