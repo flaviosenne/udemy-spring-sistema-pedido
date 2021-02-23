@@ -45,8 +45,10 @@ public class CategoryService {
         return (this.categoryRepository.save(category));
     }
 
-    public Category updateCategory(Category category){
-            return this.categoryRepository.save(category);
+    public Category updateCategory(Category category) {
+        Category newCategory = this.findCategoryById(category.getId()).getBody();
+        updateDate(newCategory, category);
+        return this.categoryRepository.save(newCategory);
     }
 
     public void deleteCategoryById(Integer id){
@@ -78,5 +80,9 @@ public class CategoryService {
 
     public Category toCategory(CategoryDTO category){
         return new Category(category.getId(), category.getName());
+    }
+
+    private void updateDate(Category newCategory, Category category){
+        newCategory.setName(category.getName());
     }
 }
