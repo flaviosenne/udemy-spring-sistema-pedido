@@ -18,7 +18,7 @@ public class CategoryDTO implements Serializable {
 
     private Integer id;
 
-    @NotEmpty(message = "can't is null")
+    @NotEmpty(message = "name can't is null")
     @Size(min = 5, max = 80, message = "size between 5 and 80")
     private String name;
 

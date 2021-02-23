@@ -6,41 +6,41 @@ import java.util.Arrays;
 import com.ordering.system.domains.*;
 import com.ordering.system.enums.ClientType;
 import com.ordering.system.enums.PaymentStatus;
-// import com.ordering.system.repositories.AdressRepository;
-// import com.ordering.system.repositories.CategoryRepository;
-// import com.ordering.system.repositories.CityRepository;
-// import com.ordering.system.repositories.ClientRepository;
-// import com.ordering.system.repositories.PaymentRepository;
-// import com.ordering.system.repositories.ProductRepository;
-// import com.ordering.system.repositories.RequestItemRepository;
-// import com.ordering.system.repositories.RequestsRepository;
-// import com.ordering.system.repositories.StateRepository;
+import com.ordering.system.repositories.AdressRepository;
+import com.ordering.system.repositories.CategoryRepository;
+import com.ordering.system.repositories.CityRepository;
+import com.ordering.system.repositories.ClientRepository;
+import com.ordering.system.repositories.PaymentRepository;
+import com.ordering.system.repositories.ProductRepository;
+import com.ordering.system.repositories.RequestItemRepository;
+import com.ordering.system.repositories.RequestsRepository;
+import com.ordering.system.repositories.StateRepository;
 
-// import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SystemApplication implements CommandLineRunner{
-	// @Autowired
-	// private CategoryRepository categoryRepository;
-	// @Autowired
-	// private ProductRepository productRepository;
-	// @Autowired
-	// private CityRepository cityRepository;
-	// @Autowired
-	// private StateRepository stateRepository;
-	// @Autowired
-	// private ClientRepository clientRepository;
-	// @Autowired
-	// private AdressRepository adressRepository;
-	// @Autowired
-	// private RequestsRepository requestsRepository;
-	// @Autowired
-	// private PaymentRepository paymentRepository;
-	// @Autowired
-	// private RequestItemRepository requestItemRepository;
+	@Autowired
+	private CategoryRepository categoryRepository;
+	@Autowired
+	private ProductRepository productRepository;
+	@Autowired
+	private CityRepository cityRepository;
+	@Autowired
+	private StateRepository stateRepository;
+	@Autowired
+	private ClientRepository clientRepository;
+	@Autowired
+	private AdressRepository adressRepository;
+	@Autowired
+	private RequestsRepository requestsRepository;
+	@Autowired
+	private PaymentRepository paymentRepository;
+	@Autowired
+	private RequestItemRepository requestItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SystemApplication.class, args);
@@ -82,8 +82,8 @@ public class SystemApplication implements CommandLineRunner{
 	p3.getCategories().addAll(Arrays.asList(cat1));
 	
 	
-	//  this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-	//  this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
+	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
+	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
 
 	State state1 = new State();
 	State state2 = new State();
@@ -97,8 +97,8 @@ public class SystemApplication implements CommandLineRunner{
 	state1.getCities().addAll(Arrays.asList(c1, c3));
 	state2.getCities().addAll(Arrays.asList(c2));
 
-//	 this.stateRepository.saveAll(Arrays.asList(state1, state2));
-//	 this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
+	 this.stateRepository.saveAll(Arrays.asList(state1, state2));
+	 this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 	Client client1 = new Client(null, "João Silva", "joao@gmail.com", "123.456.789-00", ClientType.PHYSICAL);
 
@@ -109,8 +109,8 @@ public class SystemApplication implements CommandLineRunner{
 
 	client1.getAdresses().addAll(Arrays.asList(adress1, adress2));
 
-//	 this.clientRepository.saveAll(Arrays.asList(client1));
-//	 this.adressRepository.saveAll(Arrays.asList(adress1, adress2));
+	 this.clientRepository.saveAll(Arrays.asList(client1));
+	 this.adressRepository.saveAll(Arrays.asList(adress1, adress2));
 
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
@@ -125,8 +125,8 @@ public class SystemApplication implements CommandLineRunner{
 
 	client1.getRequests().addAll(Arrays.asList(requests1, requests2));
 
-//	 this.requestsRepository.saveAll(Arrays.asList(requests1, requests2));
-//	 this.paymentRepository.saveAll(Arrays.asList(payment1, payment2));
+	 this.requestsRepository.saveAll(Arrays.asList(requests1, requests2));
+	 this.paymentRepository.saveAll(Arrays.asList(payment1, payment2));
 
 		RequestItem item1 = new RequestItem(p1, requests1, 0.00, 1, 2000.00);
 		RequestItem item2 = new RequestItem(p3, requests1, 0.00, 2, 80.00);
@@ -139,7 +139,7 @@ public class SystemApplication implements CommandLineRunner{
 		p2.getItens().addAll(Arrays.asList(item3));
 		p3.getItens().addAll(Arrays.asList(item2));
 
-//		 this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
+		 this.requestItemRepository.saveAll(Arrays.asList(item1, item2, item3));
 		
 }
 
