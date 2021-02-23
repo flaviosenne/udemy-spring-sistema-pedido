@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ordering.system.enums.PaymentStatus;
-import lombok.EqualsAndHashCode;
+
 
 import lombok.NoArgsConstructor;
 

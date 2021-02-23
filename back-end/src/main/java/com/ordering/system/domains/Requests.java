@@ -3,7 +3,7 @@ package com.ordering.system.domains;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

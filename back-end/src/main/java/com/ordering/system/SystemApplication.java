@@ -6,41 +6,41 @@ import java.util.Arrays;
 import com.ordering.system.domains.*;
 import com.ordering.system.enums.ClientType;
 import com.ordering.system.enums.PaymentStatus;
-import com.ordering.system.repositories.AdressRepository;
-import com.ordering.system.repositories.CategoryRepository;
-import com.ordering.system.repositories.CityRepository;
-import com.ordering.system.repositories.ClientRepository;
-import com.ordering.system.repositories.PaymentRepository;
-import com.ordering.system.repositories.ProductRepository;
-import com.ordering.system.repositories.RequestItemRepository;
-import com.ordering.system.repositories.RequestsRepository;
-import com.ordering.system.repositories.StateRepository;
+// import com.ordering.system.repositories.AdressRepository;
+// import com.ordering.system.repositories.CategoryRepository;
+// import com.ordering.system.repositories.CityRepository;
+// import com.ordering.system.repositories.ClientRepository;
+// import com.ordering.system.repositories.PaymentRepository;
+// import com.ordering.system.repositories.ProductRepository;
+// import com.ordering.system.repositories.RequestItemRepository;
+// import com.ordering.system.repositories.RequestsRepository;
+// import com.ordering.system.repositories.StateRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SystemApplication implements CommandLineRunner{
-	@Autowired
-	private CategoryRepository categoryRepository;
-	@Autowired
-	private ProductRepository productRepository;
-	@Autowired
-	private CityRepository cityRepository;
-	@Autowired
-	private StateRepository stateRepository;
-	@Autowired
-	private ClientRepository clientRepository;
-	@Autowired
-	private AdressRepository adressRepository;
-	@Autowired
-	private RequestsRepository requestsRepository;
-	@Autowired
-	private PaymentRepository paymentRepository;
-	@Autowired
-	private RequestItemRepository requestItemRepository;
+	// @Autowired
+	// private CategoryRepository categoryRepository;
+	// @Autowired
+	// private ProductRepository productRepository;
+	// @Autowired
+	// private CityRepository cityRepository;
+	// @Autowired
+	// private StateRepository stateRepository;
+	// @Autowired
+	// private ClientRepository clientRepository;
+	// @Autowired
+	// private AdressRepository adressRepository;
+	// @Autowired
+	// private RequestsRepository requestsRepository;
+	// @Autowired
+	// private PaymentRepository paymentRepository;
+	// @Autowired
+	// private RequestItemRepository requestItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SystemApplication.class, args);
@@ -82,8 +82,8 @@ public class SystemApplication implements CommandLineRunner{
 	p3.getCategories().addAll(Arrays.asList(cat1));
 	
 	
-//	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-//	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
+	//  this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
+	//  this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
 
 	State state1 = new State();
 	State state2 = new State();
