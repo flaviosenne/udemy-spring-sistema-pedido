@@ -7,12 +7,14 @@ import com.ordering.system.dto.CategoryDTO;
 import com.ordering.system.services.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categories")
@@ -55,5 +57,17 @@ public class CategoryResource {
 
         this.categoryService.deleteCategoryById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/page")
+    public ResponseEntity<Page<CategoryDTO>> findPage(
+            @RequestParam(value = "page", defaultValue ="0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue ="24") Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue ="name") String orderBy,
+            @RequestParam(value = "direction", defaultValue ="asc") String direction){
+
+        Page<Category> list = this.categoryService.findPage(page, linesPerPage, orderBy, direction);
+        Page<CategoryDTO> listDTO = list.map(obj -> new CategoryDTO(obj));
+        return ResponseEntity.ok(listDTO);
     }
 }

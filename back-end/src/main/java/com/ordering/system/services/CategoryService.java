@@ -11,6 +11,9 @@ import com.ordering.system.repositories.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +48,7 @@ public class CategoryService {
     public Category updateCategory(Category category){
             return this.categoryRepository.save(category);
     }
+
     public void deleteCategoryById(Integer id){
         this.findCategoryById(id);
         try{
@@ -54,6 +58,21 @@ public class CategoryService {
 
             throw new DataIntegrityException("Can't remove category if exist connect products ");
         }
+
+    }
+
+    public Page<Category> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        if(direction.equals("asc")){
+            PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.ASC,
+                    orderBy);
+            return this.categoryRepository.findAll(pageRequest);
+        }
+        else {
+            PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.DESC,
+                    orderBy);
+            return this.categoryRepository.findAll(pageRequest);
+        }
+
 
     }
 }
