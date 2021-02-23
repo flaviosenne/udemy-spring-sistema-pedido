@@ -1,8 +1,11 @@
 package com.ordering.system.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.ordering.system.domains.Category;
+import com.ordering.system.dto.CategoryDTO;
 import com.ordering.system.exceptions.DataIntegrityException;
 import com.ordering.system.repositories.CategoryRepository;
 
@@ -15,6 +18,15 @@ import org.springframework.stereotype.Service;
 public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
+
+    public ResponseEntity<List<CategoryDTO>> findAllCategory(){
+        List<Category> categories = this.categoryRepository.findAll();
+
+        List<CategoryDTO> listDTO = categories.stream()
+                .map(obj ->  new CategoryDTO(obj)).collect(Collectors.toList());
+
+        return ResponseEntity.status(200).body(listDTO);
+    }
 
     public ResponseEntity<Category> findCategoryById(Integer id){
         Optional<Category> category = this.categoryRepository.findById(id);
