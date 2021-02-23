@@ -41,4 +41,11 @@ public class CategoryResource {
                 .buildAndExpand(categorySaved.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id){
+
+        this.categoryService.deleteCategoryById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

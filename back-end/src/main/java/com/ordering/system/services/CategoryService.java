@@ -3,9 +3,11 @@ package com.ordering.system.services;
 import java.util.Optional;
 
 import com.ordering.system.domains.Category;
+import com.ordering.system.exceptions.DataIntegrityException;
 import com.ordering.system.repositories.CategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +32,16 @@ public class CategoryService {
 
     public Category updateCategory(Category category){
             return this.categoryRepository.save(category);
+    }
+    public void deleteCategoryById(Integer id){
+        this.findCategoryById(id);
+        try{
+            this.categoryRepository.deleteById(id);
+        }
+        catch(DataIntegrityViolationException e){
+
+            throw new DataIntegrityException("Can't remove category if exist connect products ");
+        }
 
     }
 }
