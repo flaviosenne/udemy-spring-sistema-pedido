@@ -57,6 +57,26 @@ public class SystemApplication implements CommandLineRunner{
 	cat2.setId(null);
 	cat2.setName("Escritório");
 
+	Category cat3 = new Category();
+	cat3.setId(null);
+	cat3.setName("Cama mesa banho");
+
+	Category cat4 = new Category();
+	cat4.setId(null);
+	cat4.setName("Eletrônicos");
+
+	Category cat5 = new Category();
+	cat5.setId(null);
+	cat5.setName("Jardinagem");
+	
+	Category cat6 = new Category();
+	cat6.setId(null);
+	cat6.setName("Decoração");
+	
+	Category cat7 = new Category();
+	cat7.setId(null);
+	cat7.setName("Perfumaria");
+
 
 	Product p1 = new Product();
 	p1.setId(null);
@@ -72,18 +92,63 @@ public class SystemApplication implements CommandLineRunner{
 	p3.setId(null);
 	p3.setName("mouse");
 	p3.setPrice(80.00);
+	Product p4 = new Product();
+	p4.setId(null);
+	p4.setName("mesa de escritório");
+	p4.setPrice(300.00);
+	Product p5 = new Product();
+	p5.setId(null);
+	p5.setName("toalha");
+	p5.setPrice(50.00);
+	Product p6 = new Product();
+	p6.setId(null);
+	p6.setName("colcha");
+	p6.setPrice(200.00);
+	Product p7 = new Product();
+	p7.setId(null);
+	p7.setName("TV full hd");
+	p7.setPrice(1900.00);
+	Product p8 = new Product();
+	p8.setId(null);
+	p8.setName("roçadeira");
+	p8.setPrice(800.00);
+	Product p9 = new Product();
+	p9.setId(null);
+	p9.setName("abajur");
+	p9.setPrice(100.00);
+	Product p10 = new Product();
+	p10.setId(null);
+	p10.setName("Guarda roupa");
+	p10.setPrice(700.00);
+	Product p11 = new Product();
+	p11.setId(null);
+	p11.setName("shampoo");
+	p11.setPrice(90.00);
 
 	
 	cat1.getProducts().addAll(Arrays.asList(p1, p2, p3));
-	cat2.getProducts().addAll(Arrays.asList(p2));
+	cat2.getProducts().addAll(Arrays.asList(p2, p4));
+	cat3.getProducts().addAll(Arrays.asList(p5, p6));
+	cat4.getProducts().addAll(Arrays.asList(p1, p2, p3, p7));
+	cat5.getProducts().addAll(Arrays.asList(p8));
+	cat6.getProducts().addAll(Arrays.asList(p9, p10));
+	cat7.getProducts().addAll(Arrays.asList(p11));
 	
-	p1.getCategories().addAll(Arrays.asList(cat1));
-	p2.getCategories().addAll(Arrays.asList(cat1, cat2));
-	p3.getCategories().addAll(Arrays.asList(cat1));
+	p1.getCategories().addAll(Arrays.asList(cat1, cat4));
+	p2.getCategories().addAll(Arrays.asList(cat1, cat2, cat4));
+	p3.getCategories().addAll(Arrays.asList(cat1, cat4));
+	p4.getCategories().addAll(Arrays.asList(cat2));
+	p5.getCategories().addAll(Arrays.asList(cat3));
+	p6.getCategories().addAll(Arrays.asList(cat3));
+	p7.getCategories().addAll(Arrays.asList(cat4));
+	p8.getCategories().addAll(Arrays.asList(cat5));
+	p9.getCategories().addAll(Arrays.asList(cat6));
+	p10.getCategories().addAll(Arrays.asList(cat6));
+	p11.getCategories().addAll(Arrays.asList(cat7));
 	
 	
-	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2));
-	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3));
+	 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
+	 this.productRepository.saveAll(Arrays.asList(p1,p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 
 	State state1 = new State();
 	State state2 = new State();

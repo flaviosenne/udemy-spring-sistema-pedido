@@ -75,7 +75,6 @@ public class CategoryService {
             return this.categoryRepository.findAll(pageRequest);
         }
 
-
     }
 
     public Category toCategory(CategoryDTO category){
