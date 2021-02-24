@@ -19,7 +19,6 @@ public class ClientDTO {
     
     @NotEmpty(message = "name can't is null")
     @Size(min = 5, max = 120, message = "size between 5 and 120")
-    
     private String name;
     @NotEmpty(message = "name can't is null")
     @Email(message = "invalid email")
