@@ -12,7 +12,7 @@ import com.ordering.system.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,19 +33,10 @@ public class ProductService {
 
     }
     
-    public Page<Product> search(String name, List<Integer> ids, Integer page, Integer linesPerPage, String orderBy, String direction){
-
-        List<Category> categories = this.categoryRepository.findAllById(ids);
-        if(direction.equals("asc")){
-            PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.ASC,
-                    orderBy);
-            return this.productRepository.search(name, categories, pageRequest);
-        }
-        else {
-            PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.DESC,
-            orderBy);
-            return this.productRepository.search(name, categories, pageRequest);
-            
-        }
-    }
+    
+    public Page<Product> search(String nome, List<Integer> ids, Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		List<Category> categorias = categoryRepository.findAllById(ids);
+		return productRepository.search(nome, categorias, pageRequest);	
+	}
 }
