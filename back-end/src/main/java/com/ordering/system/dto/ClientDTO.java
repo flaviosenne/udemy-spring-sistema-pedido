@@ -5,6 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.ordering.system.domains.Client;
+import com.ordering.system.services.validations.ClientUpdate;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@ClientUpdate
 public class ClientDTO {
     
     private Integer id;
