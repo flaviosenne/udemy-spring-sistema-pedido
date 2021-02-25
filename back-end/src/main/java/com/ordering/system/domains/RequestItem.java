@@ -40,6 +40,10 @@ public class RequestItem implements Serializable {
     public Product getProduct(){
         return this.id.getProduct();
     }
+
+    public double getSubTotal(){
+        return (this.price - this.off) * this.quantity;
+    }
     @JsonIgnore
     public Requests getRequest(){
         return this.id.getRequests();

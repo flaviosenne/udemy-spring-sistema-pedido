@@ -53,4 +53,14 @@ public class Requests implements Serializable {
         this.client = client;
         this.deliveryAdress = deliveryAdress;
     }
+
+    public double getTotalValue(){
+        double sum = 0;
+        for(RequestItem item: this.itens){
+            sum += item.getSubTotal();
+        }
+
+        return sum;
+
+    }
 }
