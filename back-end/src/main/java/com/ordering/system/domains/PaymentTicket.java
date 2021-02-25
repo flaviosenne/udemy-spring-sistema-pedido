@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.ordering.system.enums.PaymentStatus;
 
 import lombok.Getter;
@@ -16,6 +17,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
+
+@JsonTypeName("paymentWithTicket")
 public class PaymentTicket extends Payment {
   
     private static final long serialVersionUID = 1L;

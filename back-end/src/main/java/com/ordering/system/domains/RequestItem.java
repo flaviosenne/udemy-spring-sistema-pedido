@@ -41,11 +41,19 @@ public class RequestItem implements Serializable {
         return this.id.getProduct();
     }
 
+    public void setProduct(Product product){
+        this.id.setProduct(product);
+    }
+
     public double getSubTotal(){
         return (this.price - this.off) * this.quantity;
     }
     @JsonIgnore
     public Requests getRequest(){
         return this.id.getRequests();
+    }
+
+    public void setRequest(Requests requests){
+        this.id.setRequests(requests);
     }
 }
