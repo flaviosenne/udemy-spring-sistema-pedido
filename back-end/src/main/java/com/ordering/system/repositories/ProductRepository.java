@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     
     @Transactional(readOnly = true)
-    @Query(value = "select obj from Product obj inner join obj.categories cat where obj.name like '% :name %' and cat in :categories " )
+    @Query(value = "select obj from Product obj inner join obj.categories cat where obj.name like %:name% and cat in :categories " )
     Page<Product> search(
         @Param("name") String name,
         @Param("categories") List<Category> categories,

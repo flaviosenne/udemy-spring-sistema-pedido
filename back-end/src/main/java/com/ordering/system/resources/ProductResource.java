@@ -32,13 +32,14 @@ public class ProductResource {
             @RequestParam(value = "categories", defaultValue ="") String categories,
             @RequestParam(value = "page", defaultValue ="0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue ="24") Integer linesPerPage,
-            @RequestParam(value = "orderBy", defaultValue ="name") String orderBy,
-            @RequestParam(value = "direction", defaultValue ="asc") String direction){
-
+            @RequestParam(value = "orderBy", defaultValue ="name") String orderBy){
         
         String nameDecode = URL.decodeParam(name);
         List<Integer> ids = URL.decodeIntList(categories);
-        Page<Product> list = this.productService.search(nameDecode, ids, page, linesPerPage, orderBy, direction);
+        System.out.println(nameDecode);
+        System.out.println(ids);
+        Page<Product> list = this.productService.search(nameDecode, ids, page, linesPerPage, orderBy);
+        System.out.println("aqui" +list);
         Page<ProductDTO> listDTO = list.map(obj -> new ProductDTO(obj));
         return ResponseEntity.ok(listDTO);
     }

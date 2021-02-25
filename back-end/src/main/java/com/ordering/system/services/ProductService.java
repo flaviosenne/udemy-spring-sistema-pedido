@@ -10,9 +10,10 @@ import com.ordering.system.repositories.CategoryRepository;
 import com.ordering.system.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,9 +35,12 @@ public class ProductService {
     }
     
     
-    public Page<Product> search(String nome, List<Integer> ids, Integer page, Integer linesPerPage, String orderBy, String direction) {
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+    public Page<Product> search(String name, List<Integer> ids, Integer page, Integer linesPerPage, String orderBy) {
+
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.ASC, orderBy);
+
+        System.out.println("Aqui" +pageRequest);
 		List<Category> categorias = categoryRepository.findAllById(ids);
-		return productRepository.search(nome, categorias, pageRequest);	
+		return productRepository.search(name, categorias, pageRequest);	
 	}
 }
