@@ -10,8 +10,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 
@@ -62,5 +65,28 @@ public class Requests implements Serializable {
 
         return sum;
 
+    }
+
+    @Override
+    public String toString(){
+        
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        StringBuilder builder = new StringBuilder();
+        builder.append("Request number: ");
+        builder.append(this.getId());
+        builder.append(", date initial = ");
+        builder.append(sdf.format(this.getDateStart()));
+        builder.append(", client = ");
+        builder.append(this.getClient().getName());
+        builder.append(", payment status: ");
+        builder.append(this.getPayment().getStatus());
+        builder.append("\n Details: \n");
+        for(RequestItem item: getItens()){
+            builder.append(item.toString()); 
+        }
+        builder.append(" Toatal value: ");
+        builder.append(nf.format(this.getTotalValue()));
+        return builder.toString();
     }
 }
