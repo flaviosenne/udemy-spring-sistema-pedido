@@ -3,6 +3,8 @@ package com.ordering.system.config;
 import java.text.ParseException;
 
 import com.ordering.system.services.DBService;
+import com.ordering.system.services.EmailService;
+import com.ordering.system.services.SmtpEmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,5 +29,10 @@ public class DevConfig {
 
         this.dbService.instantiateTestDatabase();
         return true;
+    }
+
+    @Bean
+    public EmailService emailService(){
+        return new SmtpEmailService();
     }
 }
