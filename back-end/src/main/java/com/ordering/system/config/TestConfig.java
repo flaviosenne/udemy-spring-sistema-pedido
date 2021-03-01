@@ -3,8 +3,6 @@ package com.ordering.system.config;
 import java.text.ParseException;
 
 import com.ordering.system.services.DBService;
-import com.ordering.system.services.EmailService;
-import com.ordering.system.services.MockEmailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,8 +22,4 @@ public class TestConfig {
         return true;
     }
 
-    @Bean
-    public EmailService emailService(){
-        return new MockEmailService();
-    }
 }
