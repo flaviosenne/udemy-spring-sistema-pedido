@@ -29,8 +29,8 @@ public class RequestsService {
     private RequestItemRepository requestItemRepository;
     @Autowired
     private ClientRepository clientRepository;
-    // @Autowired
-    // private SendEmailService sendEmailService;
+    @Autowired
+    private SendEmailService sendEmailService;
 
     public ResponseEntity<Requests> getRequestById(Integer id){
         Optional<Requests> request = this.requestsRepository.findById(id);
@@ -64,7 +64,7 @@ public class RequestsService {
             item.setRequest(requests);
         }
         this.requestItemRepository.saveAll(requests.getItens());
-        // this.sendEmailService.sendOrderConfirmationEmail(requests);
+        this.sendEmailService.sendOrderConfirmationEmail(requests);
         return requests;
     }
 }
