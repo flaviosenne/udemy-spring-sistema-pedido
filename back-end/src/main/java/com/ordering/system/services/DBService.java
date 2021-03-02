@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import com.ordering.system.domains.*;
+import com.ordering.system.enums.ClientPerfil;
 import com.ordering.system.enums.ClientType;
 import com.ordering.system.enums.PaymentStatus;
 import com.ordering.system.repositories.AdressRepository;
@@ -159,20 +160,23 @@ public class DBService {
                 this.stateRepository.saveAll(Arrays.asList(state1, state2));
                 this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-                Client client1 = new Client(null, "João Flávio", "flaviosenne123@gmail.com", "123.456.789-00",
-                                ClientType.PHYSICAL, bCryptPasswordEncoder.encode("123"));
+                Client client1 = new Client(null, "João Flávio", "flaviosenne123@gmail.com", "123.456.789-00",ClientType.PHYSICAL, bCryptPasswordEncoder.encode("123"));
+                
+                Client client2 = new Client(null, "Flávio Senne", "joao.flausino@fatec.sp.gov.br", "321.654.987-00",ClientType.PHYSICAL, bCryptPasswordEncoder.encode("123"));
+                client2.addPerfil(ClientPerfil.ADMIN);
+                client2.getPhone().addAll(Arrays.asList("(16)98543-1234", "(16)95212-8703"));
 
                 client1.getPhone().addAll(Arrays.asList("(16)9999-9087", "(16)98583-2314"));
 
-                Adress adress1 = new Adress(null, "Rua das amoras", "1234", "perto da esquina", "Jardim amazonas",
-                                "14432-00", client1, c1);
-                Adress adress2 = new Adress(null, "Avenida dos carros", "5623", "em frente a loja", "Jardim Salvação",
-                                "16432-87", client1, c2);
+                Adress adress1 = new Adress(null, "Rua das amoras", "1234", "perto da esquina", "Jardim amazonas", "14432-00", client1, c1);
+                Adress adress2 = new Adress(null, "Avenida dos carros", "5623", "em frente a loja", "Jardim Salvação","16432-87", client1, c2);
+                Adress adress3 = new Adress(null, "Avenida principal", "1200", "em perto da padaria", "Jardim Eterno","16433-87", client2, c2);
 
                 client1.getAdresses().addAll(Arrays.asList(adress1, adress2));
+                client2.getAdresses().addAll(Arrays.asList(adress3));
 
-                this.clientRepository.saveAll(Arrays.asList(client1));
-                this.adressRepository.saveAll(Arrays.asList(adress1, adress2));
+                this.clientRepository.saveAll(Arrays.asList(client1, client2));
+                this.adressRepository.saveAll(Arrays.asList(adress1, adress2, adress3));
 
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 

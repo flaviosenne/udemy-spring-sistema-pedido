@@ -27,7 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private  final String[] PUBLIC_MATCHERS_GET = {
         "/products/**",
-        "/categories/**"
+        "/categories/**",
+        "/clients/**"
     };
     @Override
     protected void configure(HttpSecurity http)throws Exception{

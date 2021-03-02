@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ordering.system.enums.ClientPerfil;
 import com.ordering.system.enums.ClientType;
 
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+
 
 @EqualsAndHashCode
-@NoArgsConstructor
 @Entity
 public class Client implements Serializable{
 
@@ -44,12 +45,20 @@ public class Client implements Serializable{
     @ElementCollection
     @CollectionTable(name = "phone")
     private Set<String> phones = new HashSet<>();
+    
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "perfis")
+    private Set<Integer> perfis = new HashSet<>();
+
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "client")
     private List<Requests> requests = new ArrayList<>();
 
-
+    public Client(){
+        this.addPerfil(ClientPerfil.CLIENT);
+    }
     public Client(Integer id, String name, String email, String cpfOrCnpj, ClientType type, String pass){
         super();
         this.id = id;
@@ -58,6 +67,7 @@ public class Client implements Serializable{
         this.cpfOrCnpj = cpfOrCnpj;
         this.password = pass;
         this.type = (type == null) ? null: type.getCode();
+        this.addPerfil(ClientPerfil.CLIENT);
     }
 
     public void setId(Integer id){
@@ -88,7 +98,14 @@ public class Client implements Serializable{
     } 
     public void setOrder(List<Requests> requests){
         this.requests = requests;
+    }
+    public void addPerfil(ClientPerfil perfil){
+        this.perfis.add(perfil.getCode());
     }   
+
+    public Set<ClientPerfil> getPerfis(){
+        return this.perfis.stream().map(x -> ClientPerfil.toEnum(x)).collect(Collectors.toSet());
+    }
 
     public String getName(){
         return this.name;
