@@ -21,10 +21,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ClientService {
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     ClientRepository clientRepository;
@@ -89,12 +92,12 @@ public class ClientService {
     }
 
     public Client toClient(ClientDTO client) {
-        return new Client(client.getId(), client.getName(), client.getEmail(), null, null);
+        return new Client(client.getId(), client.getName(), client.getEmail(), null, null, null);
     }
 
     public Client toClient(ClientNewDTO client) {
        Client cli = new Client(null, client.getName(),
-        client.getEmail(), client.getCpfOrCnpj(), ClientType.toEnum(client.getType()));
+        client.getEmail(), client.getCpfOrCnpj(), ClientType.toEnum(client.getType()),bCryptPasswordEncoder.encode(client.getPassword()));
 
         City city = this.cityRepository.findById(client.getCityId()).get();
         Adress adress = new Adress(null, client.getPlace(), 

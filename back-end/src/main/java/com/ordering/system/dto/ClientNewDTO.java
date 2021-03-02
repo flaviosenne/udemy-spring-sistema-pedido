@@ -32,6 +32,9 @@ public class ClientNewDTO implements Serializable {
     private String cpfOrCnpj;
     private Integer type;
     
+    @NotEmpty(message = "password can't is null")
+    private String password;
+    
     @NotEmpty(message = "place can't is null")
     private String place;
     
