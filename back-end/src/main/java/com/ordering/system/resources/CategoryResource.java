@@ -9,6 +9,7 @@ import com.ordering.system.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,25 +37,28 @@ public class CategoryResource {
         return this.categoryService.findCategoryById(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<Void> save(@Valid @RequestBody CategoryDTO category){
         Category categoryConverted = this.categoryService.toCategory(category);
         Category categorySaved = this.categoryService.saveCategory(categoryConverted);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(categorySaved.getId()).toUri();
+        .buildAndExpand(categorySaved.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@PathVariable Integer id, @Valid @RequestBody CategoryDTO category){
         category.setId(id);
         Category categoryConverted = this.categoryService.toCategory(category);
         Category categoryUpdated = this.categoryService.updateCategory(categoryConverted);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(categoryUpdated.getId()).toUri();
+        .buildAndExpand(categoryUpdated.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Integer id){
 
