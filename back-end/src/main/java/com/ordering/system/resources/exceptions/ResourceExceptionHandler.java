@@ -2,6 +2,7 @@ package com.ordering.system.resources.exceptions;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.ordering.system.exceptions.AuthorizationException;
 import com.ordering.system.exceptions.DataIntegrityException;
 import com.ordering.system.exceptions.ObjectNotFoundException;
 
@@ -39,6 +40,13 @@ public class ResourceExceptionHandler {
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+    }
+
+    @ExceptionHandler(AuthorizationException.class)
+    public ResponseEntity<StandardError> authorization(AuthorizationException e, HttpServletRequest request){
+
+        StandardError err = new StandardError(HttpStatus.FORBIDDEN.value(), e.getMessage(), System.currentTimeMillis());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
     }
     
 }

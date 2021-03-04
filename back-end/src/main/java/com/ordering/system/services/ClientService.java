@@ -9,11 +9,14 @@ import com.ordering.system.domains.City;
 import com.ordering.system.domains.Client;
 import com.ordering.system.dto.ClientDTO;
 import com.ordering.system.dto.ClientNewDTO;
+import com.ordering.system.enums.ClientPerfil;
 import com.ordering.system.enums.ClientType;
+import com.ordering.system.exceptions.AuthorizationException;
 import com.ordering.system.exceptions.DataIntegrityException;
 import com.ordering.system.repositories.AdressRepository;
 import com.ordering.system.repositories.CityRepository;
 import com.ordering.system.repositories.ClientRepository;
+import com.ordering.system.security.UserSpringSecurity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -39,6 +42,11 @@ public class ClientService {
     AdressRepository adressRepository;
 
     public ResponseEntity<Client> getClientById(Integer id) {
+        UserSpringSecurity user = UserService.authenticated();
+
+        if(user == null || !user.hasRole(ClientPerfil.ADMIN) && !id.equals(user.getId())){
+            throw new AuthorizationException("Access denied");
+        }
         Optional<Client> client = this.clientRepository.findById(id);
 
         if (client.isPresent()) {
