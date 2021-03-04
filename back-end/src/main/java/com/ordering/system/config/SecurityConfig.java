@@ -2,6 +2,7 @@ package com.ordering.system.config;
 
 import java.util.Arrays;
 
+import com.ordering.system.security.JWTAuthorizationFilter;
 import com.ordering.system.security.JwtAuthenticationFilter;
 import com.ordering.system.security.utils.JWTUtil;
 import com.ordering.system.services.UserDetailService;
@@ -55,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated();
 
         http.addFilter(new JwtAuthenticationFilter(authenticationManager(), this.jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), this.jwtUtil, this.userDetailsService));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
