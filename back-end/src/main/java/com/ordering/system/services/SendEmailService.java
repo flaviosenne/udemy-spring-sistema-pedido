@@ -2,6 +2,7 @@ package com.ordering.system.services;
 
 import java.util.Date;
 
+import com.ordering.system.domains.Client;
 import com.ordering.system.domains.Requests;
 
 
@@ -43,6 +44,23 @@ public class SendEmailService {
         sm.setSubject("Pedido Confirmado cod: "+ requests.getId());
         sm.setSentDate(new Date(System.currentTimeMillis()));
         sm.setText(requests.toString());
+        
+        System.out.println(sm);
+        return sm;
+    }
+
+	public void sendNewPasswordEmail(Client client, String newPass) {
+        SimpleMailMessage sm = prepareNewPasswordEmail(client, newPass);
+        sendEmail(sm);
+	}
+
+    protected SimpleMailMessage prepareNewPasswordEmail(Client client, String newPass) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(client.getEmail());
+        sm.setFrom(this.sender);
+        sm.setSubject("Solicitação de nova Senha");
+        sm.setSentDate(new Date(System.currentTimeMillis()));
+        sm.setText("Nova senha: "+ newPass);
         
         System.out.println(sm);
         return sm;

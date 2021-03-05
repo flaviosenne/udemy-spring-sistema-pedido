@@ -41,7 +41,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     };
 
     private  final String[] PUBLIC_MATCHERS_POST = {
-        "/clients/**"
+        "/clients/**",
+        "/auth/forgot/**"
     };
     private  final String[] PUBLIC_MATCHERS_GET = {
         "/products/**",
