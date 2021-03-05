@@ -1,18 +1,23 @@
 package com.ordering.system.services;
 
+import com.ordering.system.domains.Client;
 import com.ordering.system.domains.PaymentTicket;
 import com.ordering.system.domains.RequestItem;
 import com.ordering.system.domains.Requests;
 import com.ordering.system.enums.PaymentStatus;
+import com.ordering.system.exceptions.AuthorizationException;
 import com.ordering.system.repositories.ClientRepository;
 import com.ordering.system.repositories.PaymentRepository;
 import com.ordering.system.repositories.RequestItemRepository;
 import com.ordering.system.repositories.RequestsRepository;
+import com.ordering.system.security.UserSpringSecurity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,5 +71,19 @@ public class RequestsService {
         this.requestItemRepository.saveAll(requests.getItens());
         this.sendEmailService.sendOrderConfirmationEmail(requests);
         return requests;
+    }
+    public List<Requests> findRequestByClient(){
+        UserSpringSecurity user = UserService.authenticated();
+        if(user == null){
+            throw new AuthorizationException("Access denided");
+        }
+
+        Optional<Client> client = clientRepository.findById(user.getId());
+        if(client.isPresent()){
+
+            return this.requestsRepository.findByClient(client.get());
+        }
+        return null;
+
     }
 }

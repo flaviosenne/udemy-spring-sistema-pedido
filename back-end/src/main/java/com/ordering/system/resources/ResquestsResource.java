@@ -1,6 +1,7 @@
 package com.ordering.system.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -33,5 +34,10 @@ public class ResquestsResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(categorySaved.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Requests>> findRequestByClient(){
+        return ResponseEntity.ok(this.requestService.findRequestByClient());
     }
 }
