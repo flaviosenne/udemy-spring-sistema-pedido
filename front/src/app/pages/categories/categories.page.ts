@@ -1,3 +1,5 @@
+import { CategoryDTO } from './../../../models/category.dto';
+import { CategoryService } from './../../../services/domain/category.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.page.scss'],
 })
 export class CategoriesPage implements OnInit {
+  items: CategoryDTO[];
 
-  constructor() { }
+  constructor(public categoryService: CategoryService) { }
 
   ngOnInit() {
+    
+    this.categoryService.findAll().subscribe((res)=> {
+        this.items = res
+    })
   }
 
 }

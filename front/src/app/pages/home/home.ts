@@ -15,12 +15,12 @@ export class HomePage {
         this.navCtrl.navigateBack('categories')
     }
 
-    ionViewWillEnter(){
-        this.menu.swipeGesture(false)
-    }
-    ionViewDidLeave(){
-        this.menu.swipeGesture(true)
-    }
+    // ionViewWillEnter(){
+    //     this.menu.swipeGesture(false)
+    // }
+    // ionViewDidLeave(){
+    //     this.menu.swipeGesture(true)
+    // }
     
 }
 
