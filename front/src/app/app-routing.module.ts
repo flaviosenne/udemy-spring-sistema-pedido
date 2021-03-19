@@ -7,9 +7,15 @@ const routes: Routes = [
     path: '',
     redirectTo: 'folder/Inbox',
     pathMatch: 'full'
-  },{
+  },
+  {
     path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomeModule),
     component: HomePage
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   }
 ];
 
