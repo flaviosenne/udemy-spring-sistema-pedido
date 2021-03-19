@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -14,7 +15,9 @@ import { CategoryService } from 'src/services/domain/category.service';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    CategoryService],
+    CategoryService
+    
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

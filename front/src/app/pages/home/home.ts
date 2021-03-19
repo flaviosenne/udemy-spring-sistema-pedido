@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { CredentialsDTO } from './../../../models/credentials.dto';
+import { Component, Input } from '@angular/core';
 import { NavController, MenuController } from '@ionic/angular';
+
+
 
 @Component({
     selector: 'page-home',
@@ -8,11 +11,16 @@ import { NavController, MenuController } from '@ionic/angular';
 })
 
 export class HomePage {
+    public credentials: CredentialsDTO = {
+        email: '',
+        password: ''
+    }
 
     constructor(public navCtrl: NavController, public menu: MenuController){}
 
     login(){
-        this.navCtrl.navigateBack('categories')
+        console.log(this.credentials)
+        // this.navCtrl.navigateBack('categories')
     }
 
     // ionViewWillEnter(){
