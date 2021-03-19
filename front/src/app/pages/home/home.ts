@@ -1,27 +1,16 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController } from '@ionic/angular';
+import {  NavController } from '@ionic/angular';
 
 @Component({
     selector: 'page-home',
-    templateUrl:'home.html'
+    templateUrl:'home.html',
+    styleUrls: ['home.scss']
 })
 
 export class HomePage {
-    constructor(public navCtrl: NavController, private menu: MenuController){
+    constructor(public navCtrl: NavController){
 
     }
-    openFirst() {
-        this.menu.enable(true, 'first');
-        this.menu.open('first');
-      }
     
-      openEnd() {
-        this.menu.open('end');
-      }
-    
-      openCustom() {
-        this.menu.enable(true, 'custom');
-        this.menu.open('custom');
-      }
 }
 
