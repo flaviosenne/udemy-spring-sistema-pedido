@@ -1,5 +1,5 @@
 import { CredentialsDTO } from './../../../models/credentials.dto';
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, MenuController } from '@ionic/angular';
 
 
@@ -10,7 +10,7 @@ import { NavController, MenuController } from '@ionic/angular';
     styleUrls: ['home.scss']
 })
 
-export class HomePage {
+export class HomePage implements  OnInit{
     public credentials: CredentialsDTO = {
         email: '',
         password: ''
@@ -21,6 +21,11 @@ export class HomePage {
     login(){
         console.log(this.credentials)
         // this.navCtrl.navigateBack('categories')
+    }
+
+    ngOnInit() {
+    
+      console.log("carregou")
     }
 
     // ionViewWillEnter(){
