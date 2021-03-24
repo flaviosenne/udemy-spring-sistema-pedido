@@ -1,3 +1,4 @@
+import { AuthService } from './../../../services/auth.service';
 import { CredentialsDTO } from './../../../models/credentials.dto';
 import { Component, OnInit } from '@angular/core';
 import { NavController, MenuController } from '@ionic/angular';
@@ -16,24 +17,18 @@ export class HomePage implements  OnInit{
         password: ''
     }
 
-    constructor(public navCtrl: NavController, public menu: MenuController){}
+    constructor(public navCtrl: NavController,
+         public menu: MenuController, public auth: AuthService){}
 
     login(){
-        console.log(this.credentials)
-        // this.navCtrl.navigateBack('categories')
+        this.auth.authenticate(this.credentials)
+        .subscribe(res => {
+            console.log(res.url)
+            this.navCtrl.navigateBack('categories')
+        })
     }
 
     ngOnInit() {
-    
-      console.log("carregou")
     }
-
-    // ionViewWillEnter(){
-    //     this.menu.swipeGesture(false)
-    // }
-    // ionViewDidLeave(){
-    //     this.menu.swipeGesture(true)
-    // }
-    
 }
 

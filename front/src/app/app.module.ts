@@ -1,3 +1,5 @@
+import { StorageService } from './../services/storage.service';
+import { AuthService } from './../services/auth.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +17,9 @@ import { CategoryService } from 'src/services/domain/category.service';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    CategoryService
+    CategoryService,
+    AuthService, 
+    StorageService
     
   ],
   bootstrap: [AppComponent],

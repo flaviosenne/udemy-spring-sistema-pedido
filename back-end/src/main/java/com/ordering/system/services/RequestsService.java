@@ -72,6 +72,7 @@ public class RequestsService {
         this.sendEmailService.sendOrderConfirmationEmail(requests);
         return requests;
     }
+    
     public List<Requests> findRequestByClient(){
         UserSpringSecurity user = UserService.authenticated();
         if(user == null){
