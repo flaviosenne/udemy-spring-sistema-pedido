@@ -1,5 +1,6 @@
 package com.ordering.system.services;
 
+import java.util.Optional;
 import java.util.Random;
 
 import com.ordering.system.domains.Client;
@@ -27,18 +28,18 @@ public class AuthService {
 
     public void sendNewPassword(String email){
 
-        Client client = this.clientRepository.findByEmail(email);
+        Optional<Client> client = this.clientRepository.findByEmail(email);
 
-        if(client == null){
+        if(!client.isPresent()){
             throw new ObjectNotFoundException("Email not found");
         }
 
         String newPass = newPassword();
-        client.setPassword(bcrypt.encode(newPass));
+        client.get().setPassword(bcrypt.encode(newPass));
 
-        this.clientRepository.save(client);
+        this.clientRepository.save(client.get());
 
-        this.emailService.sendNewPasswordEmail(client, newPass);
+        this.emailService.sendNewPasswordEmail(client.get(), newPass);
     }
 
     private String newPassword() {

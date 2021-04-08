@@ -56,6 +56,17 @@ public class ClientService {
         return ResponseEntity.status(404).body(null);
     }
 
+    public ResponseEntity<Client> getClientByEmail(String email) {
+
+        Optional<Client> client = this.clientRepository.findByEmail(email);
+
+        if (client.isPresent()) {
+            return ResponseEntity.status(200).body(client.get());
+        }
+
+        return ResponseEntity.status(404).body(null);
+    }
+
     public ResponseEntity<List<ClientDTO>> findAllClient(){
         List<Client> client = this.clientRepository.findAll();
 

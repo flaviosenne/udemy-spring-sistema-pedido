@@ -12,14 +12,14 @@ export class AuthService {
         public storage: StorageService){}
 
     authenticate(creds: CredentialsDTO){
-        return this.http.post(`${API_CONFIG.baseUrl}/login`, creds, {
+        return this.http.post(`${API_CONFIG.baseUrl}/auth/login`, creds, {
             observe: 'response',
-            responseType: 'text'
+            responseType: 'json'
         })
     }
 
     successFullLogin(tokenValue: string){
-        let token = tokenValue.substring(7)
+        let token = tokenValue
         let user: LocalUser = {
             token
         }

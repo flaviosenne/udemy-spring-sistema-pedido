@@ -2,6 +2,7 @@ package com.ordering.system.services.validations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -38,8 +39,8 @@ public class ClientInsertValidator implements ConstraintValidator<ClientInsert, 
             list.add(new FieldMessage("cpfOrCnpj", "cnpj  isn't valid"));
         }
         
-        Client existEmail = this.clientRepository.findByEmail(client.getEmail());
-        if(existEmail != null){
+        Optional<Client> existEmail = this.clientRepository.findByEmail(client.getEmail());
+        if(existEmail.isPresent()){
             list.add(new FieldMessage("email", "email already exist"));
 
         }

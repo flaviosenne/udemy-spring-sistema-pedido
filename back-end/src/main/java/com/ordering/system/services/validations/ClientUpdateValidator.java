@@ -3,6 +3,7 @@ package com.ordering.system.services.validations;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintValidator;
@@ -42,8 +43,8 @@ public class ClientUpdateValidator implements ConstraintValidator<ClientUpdate, 
         List<FieldMessage> list = new ArrayList<>();
 
         
-        Client existEmail = this.clientRepository.findByEmail(client.getEmail());
-        if(existEmail != null && !existEmail.getId().equals(uriId)){
+        Optional<Client> existEmail = this.clientRepository.findByEmail(client.getEmail());
+        if(existEmail.isPresent() && !existEmail.get().getId().equals(uriId)){
             list.add(new FieldMessage("email", "email already exist"));
 
         }
