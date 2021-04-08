@@ -23,7 +23,7 @@ export class HomePage implements  OnInit{
     login(){
         this.auth.authenticate(this.credentials)
         .subscribe(res => {
-            this.auth.successFullLogin(res.body['token'])
+            this.auth.successFullLogin(res.body['token'], this.credentials.email)
             this.navCtrl.navigateBack('categories')
         })
     }

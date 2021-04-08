@@ -1,3 +1,5 @@
+import { ClientService } from './../services/domain/client.service';
+import { CategoryService } from 'src/services/domain/category.service';
 import { StorageService } from './../services/storage.service';
 import { AuthService } from './../services/auth.service';
 
@@ -10,7 +12,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CategoryService } from 'src/services/domain/category.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { CategoryService } from 'src/services/domain/category.service';
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     CategoryService,
     AuthService, 
-    StorageService
+    StorageService,
+    ClientService,
     
   ],
   bootstrap: [AppComponent],

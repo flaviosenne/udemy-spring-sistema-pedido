@@ -18,10 +18,11 @@ export class AuthService {
         })
     }
 
-    successFullLogin(tokenValue: string){
+    successFullLogin(tokenValue: string, email: string){
         let token = tokenValue
         let user: LocalUser = {
-            token
+            token,
+            email
         }
 
         this.storage.setLocalUser(user)

@@ -44,6 +44,10 @@ public class ClientResource {
         return this.clientService.getClientById(id);
     }
 
+    @GetMapping(value = "/email")
+    public ResponseEntity<Client> getClientByEmail(@RequestParam(value = "value") String email){
+        return this.clientService.getClientByEmail(email);
+    }
     @PostMapping
     public ResponseEntity<Void> save(@Valid @RequestBody ClientNewDTO client){
         Client clientConverted = this.clientService.toClient(client);
