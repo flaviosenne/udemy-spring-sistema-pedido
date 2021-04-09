@@ -6,15 +6,14 @@
 
   <ion-content class="profile">
     <IonAvatar>
-      <img src="https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png" />
+      <img [src]='client?.urlImage || "assets/img/user.png" ' />
     </IonAvatar>
   
       <div class="items">
-        <ion-label>Usuário: {{client?.name}}</ion-label>
+        <h1> {{client?.name}}</h1>
         <!-- <br> -->
-        <ion-label>Email: {{client?.email}}</ion-label>        
+        <p>{{client?.email}}</p>        
       </div>
-      <!-- <ion-item>
-      </ion-item> -->
+      
     
 </ion-content>

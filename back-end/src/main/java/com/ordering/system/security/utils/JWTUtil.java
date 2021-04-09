@@ -2,7 +2,6 @@ package com.ordering.system.security.utils;
 
 import java.util.Date;
 
-import com.ordering.system.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

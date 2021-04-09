@@ -1,3 +1,5 @@
+import {  AuthInterceptorProvider } from './interceptors/auth-interceptor';
+import {  ErrorInterceptorProvider } from './interceptors/error-interceptor';
 import { ClientService } from './../services/domain/client.service';
 import { CategoryService } from 'src/services/domain/category.service';
 import { StorageService } from './../services/storage.service';
@@ -18,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
+    AuthInterceptorProvider,
+    // ErrorInterceptorProvider,
     CategoryService,
     AuthService, 
     StorageService,

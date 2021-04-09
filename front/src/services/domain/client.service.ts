@@ -12,10 +12,14 @@ export class ClientService {
         public auth: AuthService){}
 
     findByEmail(email: string): Observable<ClientDTO> {
-        const token = this.auth.storage.getLocalUser().token
-        const headers = new HttpHeaders({'Authorization': 'Bearer '+ token}) 
+        // const token = this.auth.storage.getLocalUser().token
+        // const headers = new HttpHeaders({'Authorization': 'Bearer '+ token}) 
         return this.http.get<ClientDTO>(
-            `${API_CONFIG.baseUrl}/clients/email?value=${email}`,
-            {headers})
+            `${API_CONFIG.baseUrl}/clients/email?value=${email}`)
     }
+
+    // getImageFromBucketAWS(id: string): Observable<any>{
+    //     let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`
+    //     return this.http.get(url, { responseType: 'blob'})
+    // }
 }

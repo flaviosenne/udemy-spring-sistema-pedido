@@ -6,7 +6,6 @@ import com.ordering.system.domains.Client;
 import com.ordering.system.dto.EmailDTO;
 import com.ordering.system.dto.LoginDTO;
 import com.ordering.system.dto.TokenDTO;
-import com.ordering.system.repositories.ClientRepository;
 import com.ordering.system.security.UserSpringSecurity;
 import com.ordering.system.security.utils.JWTUtil;
 import com.ordering.system.services.AuthService;

@@ -1,3 +1,4 @@
+import { API_CONFIG } from './../../../config/api.config';
 import { ClientService } from './../../../services/domain/client.service';
 import { ClientDTO } from './../../../models/client.dto';
 import { AuthService } from './../../../services/auth.service';
@@ -23,5 +24,12 @@ export class ProfilePage implements OnInit {
       console.log(this.client)
     }
   }
+
+  // getImageIfExist(){
+  //   this.clientService.getImageFromBucketAWS(this.client.id)
+  //   .subscribe(res => {
+  //     this.client.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.client.id}.jpg`
+  //   }, err => {})
+  // }
 
 }
