@@ -21,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     AuthInterceptorProvider,
-    // ErrorInterceptorProvider,
+    ErrorInterceptorProvider,
     CategoryService,
     AuthService, 
     StorageService,

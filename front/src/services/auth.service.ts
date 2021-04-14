@@ -1,5 +1,5 @@
 import { StorageService } from './storage.service';
-import { LocalUser } from './../models/loval_user';
+import { LocalUser } from '../models/local_user';
 import { API_CONFIG } from './../config/api.config';
 import { HttpClient } from '@angular/common/http';
 import { CredentialsDTO } from './../models/credentials.dto';

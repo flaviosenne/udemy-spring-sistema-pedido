@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { API_CONFIG } from './../../../config/api.config';
 import { ClientService } from './../../../services/domain/client.service';
 import { ClientDTO } from './../../../models/client.dto';
@@ -13,15 +14,22 @@ export class ProfilePage implements OnInit {
 
   client: ClientDTO 
   constructor(public auth: AuthService,
-    public clientService: ClientService) { }
+    public clientService: ClientService,
+    public navCtrl: NavController,) { }
 
   ngOnInit() {
     if(this.auth.storage.getLocalUser){
       this.clientService.findByEmail(this.auth.storage.getLocalUser().email)
       .subscribe(res => {
         this.client = res
-      }, err => console.log("error"))
+      }, err => {
+        if(err.status == 403){
+          this.navCtrl.navigateBack('/')
+        }
+      })
       console.log(this.client)
+    }else{
+      this.navCtrl.navigateBack('/')
     }
   }
 
