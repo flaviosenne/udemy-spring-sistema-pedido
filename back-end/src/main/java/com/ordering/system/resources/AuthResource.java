@@ -61,7 +61,7 @@ public class AuthResource {
 
         }
 
-        return ResponseEntity.status(404).body(null);
+        return ResponseEntity.status(401).body(null);
 
     }
 }

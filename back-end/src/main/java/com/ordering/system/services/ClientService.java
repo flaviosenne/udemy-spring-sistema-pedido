@@ -64,7 +64,7 @@ public class ClientService {
             return ResponseEntity.status(200).body(client.get());
         }
 
-        return ResponseEntity.status(404).body(null);
+        return ResponseEntity.status(401).body(null);
     }
 
     public ResponseEntity<List<ClientDTO>> findAllClient(){
