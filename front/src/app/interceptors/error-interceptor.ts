@@ -41,7 +41,6 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     handle403() {
         this.storage.setLocalUser(null)
-        alert('não autorizado')
         this.navCtrl.navigateBack('/')
     }
 
@@ -56,8 +55,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         })
         show.then(res => {
             res.present()
+            this.navCtrl.navigateBack('/')
         })
     }
+
     handleDefaultError(err) {
         let show = this.alertCtrl.create({
             header: `Erro ${err.status}: ${err.error.error}`,
@@ -69,6 +70,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         })
         show.then(res => {
             res.present()
+            this.navCtrl.navigateBack('/')
         })
     }
 

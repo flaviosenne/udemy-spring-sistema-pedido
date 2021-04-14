@@ -27,7 +27,6 @@ export class ProfilePage implements OnInit {
           this.navCtrl.navigateBack('/')
         }
       })
-      console.log(this.client)
     }else{
       this.navCtrl.navigateBack('/')
     }

@@ -38,7 +38,6 @@ export class HomePage implements  OnInit{
     ionViewDidEnter(){
         this.auth.refreshToken()
         .subscribe(res => {
-            console.log('res, ',res)
             this.auth.successFullLogin(res.body['token'], this.credentials.email)
             this.navCtrl.navigateBack('categories')
         })
