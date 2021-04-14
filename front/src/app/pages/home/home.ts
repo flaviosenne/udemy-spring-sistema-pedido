@@ -29,6 +29,19 @@ export class HomePage implements  OnInit{
     }
 
     ngOnInit() {
+        this.menu.swipeGesture(false)
+    }
+    ionViewDidLeave(){
+        this.menu.swipeGesture(true)
+    }
+
+    ionViewDidEnter(){
+        this.auth.refreshToken()
+        .subscribe(res => {
+            console.log('res, ',res)
+            this.auth.successFullLogin(res.body['token'], this.credentials.email)
+            this.navCtrl.navigateBack('categories')
+        })
     }
 }
 

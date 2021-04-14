@@ -18,6 +18,12 @@ export class AuthService {
         })
     }
 
+    refreshToken(){
+        return this.http.post(`${API_CONFIG.baseUrl}/auth/refresh-token`, {}, {
+            observe: 'response',
+            responseType: 'text'
+        })
+    }
     successFullLogin(tokenValue: string, email: string){
         let token = tokenValue
         let user: LocalUser = {
@@ -30,4 +36,6 @@ export class AuthService {
     logout(){
         this.storage.setLocalUser(null)
     }
+
+
 }
