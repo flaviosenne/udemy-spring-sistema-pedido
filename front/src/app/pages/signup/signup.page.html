@@ -24,10 +24,10 @@
       <br>
       <ion-item class="type">
         <ion-label>Fisica</ion-label>
-        <ion-radio color="dark" checked="false" formControlName="type"></ion-radio>
+        <ion-checkbox color="dark" aria-checked="true" formControlName="type"></ion-checkbox>
 
         <ion-label>Juridica</ion-label>
-        <ion-radio color="dark" checked="false" formControlName="type"></ion-radio>
+        <ion-checkbox color="dark" aria-checked="true" formControlName="type"></ion-checkbox>
       </ion-item>
     </ion-item>
     <ion-item>
@@ -65,18 +65,19 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Estado*</ion-label>
-      <ion-select formControlName="state">
-        <option value="tipo 1">Tipo 1</option>
-        <option value="tipo 1">Tipo 1</option>
-      </ion-select>
+      <select class="select"formControlName="state" (change)="updateCities()">
+       <option *ngFor="let state of states; first as f"selected="f"
+       [value]="state.id">{{state.nome}}</option>
+      </select>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Cidade*</ion-label>
-      <ion-select formControlName="city">
-        <option value="tipo 1">Tipo 1</option>
-        <option value="tipo 1">Tipo 1</option>
-      </ion-select>
+      <select class="select"formControlName="city">
+        <option *ngFor="let city of cities"
+        [value]="city.id">{{city.nome}}</option>
+      
+      </select>
     </ion-item>
     <ion-button color="primary" expand="block" type="submit" block>Cadastrar </ion-button>
   </form>

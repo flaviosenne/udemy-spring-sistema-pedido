@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,9 +10,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupPage implements OnInit {
  formGroup: FormGroup
+ states: any = []
+ cities: any = []
  
   constructor(public navCtrl: NavController,
-    private formBuilder: FormBuilder) { 
+    private formBuilder: FormBuilder,
+    private http: HttpClient) { 
+
       this.formGroup = this.formBuilder.group({
         name: ['Joao',[Validators.required, Validators.minLength(5),Validators.maxLength(120)]],
         email: ['joao@email.com',[Validators.required, Validators.email]],
@@ -25,15 +30,29 @@ export class SignupPage implements OnInit {
         district: ['Aviação',[Validators.required]],
         complement: ['',[]],
         postalCode: ['1111222',[Validators.required]],
-        state: ['1',[Validators.required]],
-        city: ['1',[Validators.required]],
+        state: [null,[Validators.required]],
+        city: [null,[Validators.required]],
       })
     }
 
   ngOnInit() {
+    this.http.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados").subscribe(res => {
+      this.states = res
+      this.formGroup.controls.state.setValue(this.states[0].id)
+      this.updateCities()
+    })
   }
 
+  updateCities(){
+    let state_id = this.formGroup.value.state
+    this.http.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state_id}/municipios`).subscribe(res => {
+      this.cities = res
+      this.formGroup.controls.city.setValue(null)
+    })
+    
+  }
   register(){
+    
     console.log("register")
   }
 
