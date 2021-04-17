@@ -38,6 +38,7 @@ export class SignupPage implements OnInit {
   ngOnInit() {
     this.http.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados").subscribe(res => {
       this.states = res
+      console.log(res)
       this.formGroup.controls.state.setValue(this.states[0].id)
       this.updateCities()
     })
@@ -46,8 +47,29 @@ export class SignupPage implements OnInit {
   updateCities(){
     let state_id = this.formGroup.value.state
     this.http.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state_id}/municipios`).subscribe(res => {
-      this.cities = res
+    this.cities = res
       this.formGroup.controls.city.setValue(null)
+    })
+    
+  }
+  changeCityWithCEP(cityParams){
+    let state_id = this.formGroup.value.state
+    this.http.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state_id}/municipios`).subscribe(res => {
+    this.cities = res
+      this.formGroup.controls['city'].setValue(this.cities.filter(city => city.nome == cityParams)[0].id)
+      
+    })
+    
+  }
+  loadAdresWithCEPInserted(){
+    const postalCode = this.formGroup.value['postalCode']
+    this.http.get(`https://viacep.com.br/ws/${postalCode}/json`).subscribe(res => {
+      
+      this.formGroup.controls['place'].setValue(res['logradouro'])
+      this.formGroup.controls['district'].setValue(res['bairro'])
+      this.formGroup.controls['complement'].setValue(res['complement'])
+      this.formGroup.controls['state'].setValue(this.states.filter(state => state.sigla == res['uf'])[0].id)
+      this.changeCityWithCEP(res['localidade'])
     })
     
   }

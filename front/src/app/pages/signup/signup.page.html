@@ -56,11 +56,12 @@
       <ion-label position="stacked">Telefone 2</ion-label>
       <ion-input formControlName="phone2" type="text"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="stacked">Rua*</ion-label>
-      <ion-input formControlName="place" type="text"></ion-input>
+      <ion-label position="stacked">CEP*</ion-label>
+      <ion-input formControlName="postalCode"(change)="loadAdresWithCEPInserted()" type="text"></ion-input>
     </ion-item>
-    <p *ngIf="formGroup.controls['place'].dirty && formGroup.controls['place'].errors">rua não preencido</p>
+    <p *ngIf="formGroup.controls['postalCode'].dirty && formGroup.controls['postalCode'].errors">CEP não preenchido</p>
     
     <ion-item>
       <ion-label position="stacked">Numero*</ion-label>
@@ -69,10 +70,10 @@
     <p *ngIf="formGroup.controls['number'].dirty && formGroup.controls['number'].errors">numero não preenchido</p>
     
     <ion-item>
-      <ion-label position="stacked">CEP*</ion-label>
-      <ion-input formControlName="postalCode" type="text"></ion-input>
+      <ion-label position="stacked">Rua*</ion-label>
+      <ion-input formControlName="place" type="text"></ion-input>
     </ion-item>
-    <p *ngIf="formGroup.controls['postalCode'].dirty && formGroup.controls['postalCode'].errors">CEP não preenchido</p>
+    <p *ngIf="formGroup.controls['place'].dirty && formGroup.controls['place'].errors">rua não preencido</p>
     
     <ion-item>
       <ion-label position="stacked">Bairro*</ion-label>
