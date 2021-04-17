@@ -8,7 +8,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items">
       <h1>{{ item.name }}</h1>
-      <ion-button slot = "end"> View</ion-button>
+      <ion-button slot = "end" (click)="viewProducts(item.id)"> Visualizar Produtos</ion-button>
     </ion-item>
   </ion-list>
 

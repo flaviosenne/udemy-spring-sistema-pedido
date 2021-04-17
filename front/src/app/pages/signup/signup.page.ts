@@ -70,7 +70,7 @@ export class SignupPage implements OnInit {
     
   }
 
-  changeCityWithCEP(cityParams){
+  changeCityWithCEP(cityParams: string){
     try{
 
       let state_id = this.formGroup.value.state

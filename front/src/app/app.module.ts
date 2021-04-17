@@ -1,3 +1,4 @@
+import { ProductService } from './../services/domain/product.service';
 import {  AuthInterceptorProvider } from './interceptors/auth-interceptor';
 import {  ErrorInterceptorProvider } from './interceptors/error-interceptor';
 import { ClientService } from './../services/domain/client.service';
@@ -25,8 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     CategoryService,
     AuthService, 
     StorageService,
-    ClientService
-    
+    ClientService,
+    ProductService    
   ],
   bootstrap: [AppComponent],
 })

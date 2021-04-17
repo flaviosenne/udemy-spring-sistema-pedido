@@ -1,3 +1,4 @@
+import { NavController } from '@ionic/angular';
 import { CategoryDTO } from './../../../models/category.dto';
 import { CategoryService } from './../../../services/domain/category.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,13 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class CategoriesPage implements OnInit {
   items: CategoryDTO[];
 
-  constructor(public categoryService: CategoryService) { }
+  constructor(public categoryService: CategoryService,
+    public navControler: NavController) { }
 
   ngOnInit() {
     
     this.categoryService.findAll().subscribe((res)=> {
         this.items = res
     })
+  }
+
+  viewProducts(categoryName: string){
+    this.navControler.navigateBack('products/'+categoryName)
   }
 
 }
