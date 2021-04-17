@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.ordering.system.domains.Adress;
-import com.ordering.system.domains.City;
+//import com.ordering.system.domains.City;
 import com.ordering.system.domains.Client;
 import com.ordering.system.dto.ClientDTO;
 import com.ordering.system.dto.ClientNewDTO;
@@ -14,7 +14,7 @@ import com.ordering.system.enums.ClientType;
 import com.ordering.system.exceptions.AuthorizationException;
 import com.ordering.system.exceptions.DataIntegrityException;
 import com.ordering.system.repositories.AdressRepository;
-import com.ordering.system.repositories.CityRepository;
+//import com.ordering.system.repositories.CityRepository;
 import com.ordering.system.repositories.ClientRepository;
 import com.ordering.system.security.UserSpringSecurity;
 
@@ -35,8 +35,8 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
-    @Autowired
-    CityRepository cityRepository;
+//    @Autowired
+//    CityRepository cityRepository;
 
     @Autowired
     AdressRepository adressRepository;
@@ -118,10 +118,10 @@ public class ClientService {
        Client cli = new Client(null, client.getName(),
         client.getEmail(), client.getCpfOrCnpj(), ClientType.toEnum(client.getType()),bCryptPasswordEncoder.encode(client.getPassword()));
 
-        City city = this.cityRepository.findById(client.getCityId()).get();
+//        Optional<City> city = this.cityRepository.findById(client.getCityId());
         Adress adress = new Adress(null, client.getPlace(), 
         client.getNumber(), client.getComplement(), client.getDistrict(),
-        client.getPostalCode(), cli, city);
+        client.getPostalCode(), cli, client.getCity());
 
         cli.getAdresses().add(adress);
         cli.getPhone().add(client.getPhone1());

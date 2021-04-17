@@ -54,5 +54,5 @@ public class ClientNewDTO implements Serializable {
     private String phone2;
     private String phone3;
 
-    private Integer cityId;
+    private String city;
 }

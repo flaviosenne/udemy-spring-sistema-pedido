@@ -31,7 +31,7 @@ public class State implements Serializable{
     
     private String name;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "state")
-    private List<City> cities = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "state")
+//    private List<City> cities = new ArrayList<>();
 }

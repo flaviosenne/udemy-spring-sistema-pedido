@@ -43,8 +43,8 @@ public class Adress implements Serializable{
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
         
-    @ManyToOne
-    @JoinColumn(name = "city_id", referencedColumnName = "id")
-    private City city;
+//    @ManyToOne
+//    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private String city;
 
 }

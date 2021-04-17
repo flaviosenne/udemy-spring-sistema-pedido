@@ -40,7 +40,7 @@ public class Client implements Serializable{
 
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Adress> adresses = new ArrayList<>();
+    private List<Adress> addresses = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "phone")
@@ -91,7 +91,7 @@ public class Client implements Serializable{
         this.type = type.getCode();
     }
     public void setAdress(List<Adress> adress){
-        this.adresses = adress;
+        this.addresses = adress;
     }
     public void setPhone(Set<String> phone){
         this.phones = phone;
@@ -126,7 +126,7 @@ public class Client implements Serializable{
         return ClientType.toEnum(this.type);
     }
     public List<Adress> getAdresses(){
-        return this.adresses;
+        return this.addresses;
     }
     public Set<String> getPhone(){
         return this.phones;

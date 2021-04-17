@@ -22,4 +22,10 @@ export class ClientService {
     //     let url = `${API_CONFIG.bucketBaseUrl}/cp${id}.jpg`
     //     return this.http.get(url, { responseType: 'blob'})
     // }
+
+    save(client: ClientDTO){
+        return this.http.post<ClientDTO>(
+            `${API_CONFIG.baseUrl}/clients`, client
+        )
+    }
 }

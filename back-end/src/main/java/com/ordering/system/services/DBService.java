@@ -10,7 +10,7 @@ import com.ordering.system.enums.ClientType;
 import com.ordering.system.enums.PaymentStatus;
 import com.ordering.system.repositories.AdressRepository;
 import com.ordering.system.repositories.CategoryRepository;
-import com.ordering.system.repositories.CityRepository;
+//import com.ordering.system.repositories.CityRepository;
 import com.ordering.system.repositories.ClientRepository;
 import com.ordering.system.repositories.PaymentRepository;
 import com.ordering.system.repositories.ProductRepository;
@@ -29,8 +29,8 @@ public class DBService {
         private CategoryRepository categoryRepository;
         @Autowired
         private ProductRepository productRepository;
-        @Autowired
-        private CityRepository cityRepository;
+//        @Autowired
+//        private CityRepository cityRepository;
         @Autowired
         private StateRepository stateRepository;
         @Autowired
@@ -150,15 +150,15 @@ public class DBService {
                 state1.setName("São Paulo");
                 state2.setName("Minas Gerais");
 
-                City c1 = new City(null, "Franca", state1);
-                City c2 = new City(null, "Uberlandia", state2);
-                City c3 = new City(null, "Campinas", state1);
+//                City c1 = new City(null, "Franca", state1);
+//                City c2 = new City(null, "Uberlandia", state2);
+//                City c3 = new City(null, "Campinas", state1);
 
-                state1.getCities().addAll(Arrays.asList(c1, c3));
-                state2.getCities().addAll(Arrays.asList(c2));
+//                state1.getCities().addAll(Arrays.asList(c1, c3));
+//                state2.getCities().addAll(Arrays.asList(c2));
 
                 this.stateRepository.saveAll(Arrays.asList(state1, state2));
-                this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
+//                this.cityRepository.saveAll(Arrays.asList(c1, c2, c3));
 
                 Client client1 = new Client(null, "João Flávio", "flaviosenne123@gmail.com", "123.456.789-00",ClientType.PHYSICAL, bCryptPasswordEncoder.encode("123"));
                 
@@ -168,9 +168,9 @@ public class DBService {
 
                 client1.getPhone().addAll(Arrays.asList("(16)9999-9087", "(16)98583-2314"));
 
-                Adress adress1 = new Adress(null, "Rua das amoras", "1234", "perto da esquina", "Jardim amazonas", "14432-00", client1, c1);
-                Adress adress2 = new Adress(null, "Avenida dos carros", "5623", "em frente a loja", "Jardim Salvação","16432-87", client1, c2);
-                Adress adress3 = new Adress(null, "Avenida principal", "1200", "em perto da padaria", "Jardim Eterno","16433-87", client2, c2);
+                Adress adress1 = new Adress(null, "Rua das amoras", "1234", "perto da esquina", "Jardim amazonas", "14432-00", client1, "Franca");
+                Adress adress2 = new Adress(null, "Avenida dos carros", "5623", "em frente a loja", "Jardim Salvação","16432-87", client1, "Pedregulho");
+                Adress adress3 = new Adress(null, "Avenida principal", "1200", "em perto da padaria", "Jardim Eterno","16433-87", client2, "São josé da Bela Vista");
 
                 client1.getAdresses().addAll(Arrays.asList(adress1, adress2));
                 client2.getAdresses().addAll(Arrays.asList(adress3));
