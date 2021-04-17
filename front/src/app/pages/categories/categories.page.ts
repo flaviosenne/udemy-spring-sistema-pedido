@@ -21,8 +21,8 @@ export class CategoriesPage implements OnInit {
     })
   }
 
-  viewProducts(categoryName: string){
-    this.navControler.navigateBack('products/'+categoryName)
+  viewProducts(categoryId: string){
+    this.navControler.navigateForward(`products/${categoryId}`)
   }
 
 }
