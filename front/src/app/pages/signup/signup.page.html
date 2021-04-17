@@ -103,6 +103,7 @@
     </ion-item>
     <p *ngIf="formGroup.controls['city'].dirty && formGroup.controls['city'].errors">cidade não selecionada</p>
     
-    <ion-button color="primary" expand="block" type="submit" block>Cadastrar </ion-button>
+    <ion-button color="primary" expand="block" type="submit" [disabled]="formGroup.invalid"
+    block>Cadastrar </ion-button>
   </form>
 </ion-content>
