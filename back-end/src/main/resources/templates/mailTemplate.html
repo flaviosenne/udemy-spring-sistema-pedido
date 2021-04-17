@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head></head>
+    <body>
+        <div style="border: 1px solid; float: left; padding: 5px;">
+            <div style="background-color: blue;">
+                </div>
+            <p>Olá [[${user.name}]],</p>
+            <p>Esse é o resultado do pedido solicitado</p>
+            <p>[[${}]]Para prosseguir com a recuperação de senha acesse o link abaixo: </p>
+            <br><br>
+            <p>Caso não tenha feito essa solicitação, desconsidere essa mensagem!</p>
+            <p>Este é um email automático, favor não responder</p>
+        </div>
+    </body>
+</html>

@@ -12,6 +12,7 @@ import com.ordering.system.repositories.RequestItemRepository;
 import com.ordering.system.repositories.RequestsRepository;
 import com.ordering.system.security.UserSpringSecurity;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,28 +22,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RequestsService {
-    @Autowired
-    private RequestsRepository requestsRepository;
-    @Autowired
-    private TicketService ticketService;
-    @Autowired
-    private PaymentRepository paymentRepository;
-    @Autowired
-    private ProductService productService;
-    @Autowired
-    private RequestItemRepository requestItemRepository;
-    @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
-    private SendEmailService sendEmailService;
+
+    private final RequestsRepository requestsRepository;
+    private final TicketService ticketService;
+    private final PaymentRepository paymentRepository;
+    private final ProductService productService;
+    private final RequestItemRepository requestItemRepository;
+    private final ClientRepository clientRepository;
+    private final SendEmailService sendEmailService;
+
 
     public ResponseEntity<Requests> getRequestById(Integer id){
         Optional<Requests> request = this.requestsRepository.findById(id);
 
-        if(request.isPresent()){
-            return ResponseEntity.status(200).body(request.get());
-        }
+        if(request.isPresent()) return ResponseEntity.status(200).body(request.get());
 
         return ResponseEntity.status(404).body(null);
     }
@@ -75,16 +70,11 @@ public class RequestsService {
     
     public List<Requests> findRequestByClient(){
         UserSpringSecurity user = UserService.authenticated();
-        if(user == null){
-            throw new AuthorizationException("Access denided");
-        }
+        if(user == null) throw new AuthorizationException("Access denided");
 
         Optional<Client> client = clientRepository.findById(user.getId());
-        if(client.isPresent()){
+        if(client.isPresent()) return this.requestsRepository.findByClient(client.get());
 
-            return this.requestsRepository.findByClient(client.get());
-        }
         return null;
-
     }
 }

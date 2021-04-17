@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formGroup" (ngSubmit)="register(); $event.preventDefault()">
+    <ion-item>
+      <ion-label position="stacked">Nome*</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email*</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Senha*</ion-label>
+      <ion-input formControlName="password" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo*</ion-label>
+      <br>
+      <ion-item class="type">
+        <ion-label>Fisica</ion-label>
+        <ion-radio color="dark" checked="false" formControlName="type"></ion-radio>
+
+        <ion-label>Juridica</ion-label>
+        <ion-radio color="dark" checked="false" formControlName="type"></ion-radio>
+      </ion-item>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">CPF / CNPJ*</ion-label>
+      <ion-input formControlName="cpfOrCnpj" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Telefone 1*</ion-label>
+      <ion-input formControlName="phone1" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Telefone 2</ion-label>
+      <ion-input formControlName="phone2" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Rua*</ion-label>
+      <ion-input formControlName="place" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Numero*</ion-label>
+      <ion-input formControlName="number" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">CEP*</ion-label>
+      <ion-input formControlName="postalCode" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Bairro*</ion-label>
+      <ion-input formControlName="district" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Complemento</ion-label>
+      <ion-input formControlName="complement" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Estado*</ion-label>
+      <ion-select formControlName="state">
+        <option value="tipo 1">Tipo 1</option>
+        <option value="tipo 1">Tipo 1</option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Cidade*</ion-label>
+      <ion-select formControlName="city">
+        <option value="tipo 1">Tipo 1</option>
+        <option value="tipo 1">Tipo 1</option>
+      </ion-select>
+    </ion-item>
+    <ion-button color="primary" expand="block" type="submit" block>Cadastrar </ion-button>
+  </form>
+</ion-content>

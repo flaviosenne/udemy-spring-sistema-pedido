@@ -42,5 +42,9 @@ export class HomePage implements  OnInit{
             this.navCtrl.navigateBack('categories')
         })
     }
+
+    register(){
+        this.navCtrl.navigateBack('signup')
+    }
 }
 

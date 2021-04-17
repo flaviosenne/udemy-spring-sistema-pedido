@@ -25,7 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     CategoryService,
     AuthService, 
     StorageService,
-    ClientService,
+    ClientService
     
   ],
   bootstrap: [AppComponent],

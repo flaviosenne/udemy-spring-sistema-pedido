@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 @Component
 public class SendEmailService {
     
     @Autowired
     private MailSender mailSender;
-    
+    @Autowired
+    private TemplateEngine templateEngine;
     @Value("${default.sender}")
     private String sender;
 
@@ -38,13 +41,15 @@ public class SendEmailService {
     }
 
     protected SimpleMailMessage prepareSimpleMailMesageFromRequests(Requests requests){
+        Context context = new Context();
+        context.setVariable("request", requests.toString());
+
         SimpleMailMessage sm = new SimpleMailMessage();
         sm.setTo(requests.getClient().getEmail());
         sm.setFrom(this.sender);
         sm.setSubject("Pedido Confirmado cod: "+ requests.getId());
         sm.setSentDate(new Date(System.currentTimeMillis()));
-        sm.setText(requests.toString());
-        
+        sm.setText(String.valueOf(context));
         System.out.println(sm);
         return sm;
     }
