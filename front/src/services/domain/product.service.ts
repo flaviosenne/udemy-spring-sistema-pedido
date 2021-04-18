@@ -13,5 +13,9 @@ export class ProductService {
         return this.http.get<ProductDTO[]>
         (`${API_CONFIG.baseUrl}/products?categories=${categoryId}`)
     }
+    findById(id: number): Observable<ProductDTO>{
+        return this.http.get<ProductDTO>
+        (`${API_CONFIG.baseUrl}/products/${id}`)
+    }
 
 }

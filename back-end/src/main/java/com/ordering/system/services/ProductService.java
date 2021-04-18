@@ -39,7 +39,6 @@ public class ProductService {
 
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.ASC, orderBy);
 
-        System.out.println("Aqui" +pageRequest);
 		List<Category> categories = categoryRepository.findAllById(ids);
 		return productRepository.search(name, categories, pageRequest);
 	}

@@ -14,7 +14,7 @@ export class ProductsPage implements OnInit {
   products: ProductDTO[]
   constructor(public navControl: NavController,
     public productService: ProductService,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute,) { }
 
   ngOnInit() {
     const category = this.route.snapshot.params.category
@@ -23,12 +23,14 @@ export class ProductsPage implements OnInit {
 
       this.productService.findByCategoryName(category).subscribe(res => {
         this.products = res['content']
-        console.log(res)
       })
     }catch(err){
       console.log(err)
 
     }
+  }
+  productDetails(id: number){
+    this.navControl.navigateForward('product-details/'+id)
   }
 
 }
