@@ -11,6 +11,7 @@ export class AppComponent {
     { title: 'Home', url: '/', icon: 'home' },
     { title: 'Categories', url: '/categories', icon: 'images' },
     { title: 'Perfil', url: '/profile', icon: 'person' },
+    { title: 'Carrinho', url: '/cart', icon: 'cart' },
     { title: 'Logout', icon: 'power', url: '/' }
   ];
   constructor(public auth: AuthService,

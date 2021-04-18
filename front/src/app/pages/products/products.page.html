@@ -4,6 +4,11 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon name='cart'></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 <ion-content>
   <ion-card *ngFor="let product of products" (click)="productDetails(product.id)">
     <ion-card-header>
