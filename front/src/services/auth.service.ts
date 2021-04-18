@@ -1,3 +1,4 @@
+import { CartService } from './domain/cart.service';
 import { StorageService } from './storage.service';
 import { LocalUser } from '../models/local_user';
 import { API_CONFIG } from './../config/api.config';
@@ -9,7 +10,8 @@ import { Injectable } from "@angular/core";
 export class AuthService {
 
     constructor(public http: HttpClient, 
-        public storage: StorageService){}
+        public storage: StorageService,
+        public cartService: CartService){}
 
     authenticate(creds: CredentialsDTO){
         return this.http.post(`${API_CONFIG.baseUrl}/auth/login`, creds, {
@@ -30,8 +32,8 @@ export class AuthService {
             token,
             email
         }
-
         this.storage.setLocalUser(user)
+        this.cartService.createOrClearCart()
     }
     logout(){
         this.storage.setLocalUser(null)

@@ -1,3 +1,5 @@
+import { NavController } from '@ionic/angular';
+import { ProductDTO } from './../../../models/product.dto';
 import { CartService } from './../../../services/domain/cart.service';
 import { CartItem } from './../../../models/cart-item.dto';
 import { Component, OnInit } from '@angular/core';
@@ -9,15 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPage implements OnInit {
   items: CartItem[]
-  total: number = 0
-
-  constructor(public cartService: CartService) { }
+  
+  constructor(public cartService: CartService,
+    public navControl: NavController) { }
 
   ngOnInit() {
-    this.total =0
     let cart = this.cartService.getCart()
     this.items = cart.items
-    this.items.map(res => this.total += Number(res.product.price))
     }
 
+    removeItem(product: ProductDTO){
+      this.items = this.cartService.removeProduct(product).items
+    }
+    incrementItem(product: ProductDTO){
+      this.items = this.cartService.incrementProduct(product).items
+    }
+    decrementItem(product: ProductDTO){
+      this.items = this.cartService.decrementProduct(product).items
+    }
+    total():number{
+      return this.cartService.total()
+    }
+
+    goOn(){
+      this.navControl.navigateBack('categories')
+    }
 }

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item *ngIf="total() > 0">
     <ion-label>Produto</ion-label>
       <ion-label>Preço</ion-label>
       <ion-label>Quantidade</ion-label>
@@ -15,13 +15,23 @@
       <ion-label>{{item?.product?.name}}</ion-label>
       <ion-label>{{item?.product?.price | currency}}</ion-label>
       <ion-label>{{item?.quantity}}</ion-label>
+      <button (click)="incrementItem(item?.product)">+</button>
+      <button (click)="decrementItem(item?.product)">-</button>
+      <button (click)="removeItem(item?.product)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
     </ion-item>
 
   </ion-table>
 
-  <ion-item class="item-footer">
+  <ion-item *ngIf="total() > 0"class="item-footer">
     <ion-label class="total">Total:</ion-label>
-    <ion-label>{{total}}</ion-label>
+    <ion-label>{{total()}}</ion-label>
   </ion-item>
-  <ion-button expand="block" color="success"> Finalizar Compra</ion-button>
+  <ion-button *ngIf="total() > 0" expand="block" color="success"> Finalizar Compra</ion-button>
+  <ion-button *ngIf="total() > 0" (click)="goOn()" expand="block" color="primary"> Continuar Comprando</ion-button>
+  <ion-item *ngIf="total() <= 0">
+    <ion-label>Voçê não possui itens no carrinho</ion-label>
+  </ion-item>
+  <ion-button *ngIf="total() <= 0"(click)="goOn()"expand="block" color="primary"> Ir para as Compras</ion-button>
 </ion-content>
