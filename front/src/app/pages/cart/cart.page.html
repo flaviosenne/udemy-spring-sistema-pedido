@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrinho</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Produto</ion-label>
+      <ion-label>Preço</ion-label>
+      <ion-label>Quantidade</ion-label>
+  </ion-item>
+  <ion-table *ngFor="let item of items">
+    <ion-item class="item">
+      <ion-label>{{item?.product?.name}}</ion-label>
+      <ion-label>{{item?.product?.price | currency}}</ion-label>
+      <ion-label>{{item?.quantity}}</ion-label>
+    </ion-item>
+
+  </ion-table>
+
+  <ion-item class="item-footer">
+    <ion-label class="total">Total:</ion-label>
+    <ion-label>{{total}}</ion-label>
+  </ion-item>
+  <ion-button expand="block" color="success"> Finalizar Compra</ion-button>
+</ion-content>

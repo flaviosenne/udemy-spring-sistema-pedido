@@ -14,7 +14,7 @@
     <ion-card-content>
       {{product?.price | currency}}
     </ion-card-content>
-    <ion-button color="primary" expand = "block"> Adionar ao Carrnho </ion-button>
+    <ion-button color="primary" expand = "block" (click)="addCart(product)"> Adionar ao Carrnho </ion-button>
      
   </ion-card>
 

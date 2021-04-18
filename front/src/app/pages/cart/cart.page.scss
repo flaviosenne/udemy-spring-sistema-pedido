@@ -1,0 +1,20 @@
+.item{
+    text-align: center;
+}
+.item-footer{
+    display: flex;
+    justify-content: space-between;
+    
+    ion-label{
+        padding: 0;
+        margin: 10px;
+        text-align: end;
+        font-weight: bold;
+        font-family: sans-serif;
+    }
+    .total{
+        clear: both;
+        text-align: start;    
+    }
+
+}

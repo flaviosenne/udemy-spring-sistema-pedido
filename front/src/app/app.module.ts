@@ -1,3 +1,4 @@
+import { CartService } from './../services/domain/cart.service';
 import { ProductService } from './../services/domain/product.service';
 import {  AuthInterceptorProvider } from './interceptors/auth-interceptor';
 import {  ErrorInterceptorProvider } from './interceptors/error-interceptor';
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     AuthService, 
     StorageService,
     ClientService,
-    ProductService    
+    ProductService,
+    CartService    
   ],
   bootstrap: [AppComponent],
 })
