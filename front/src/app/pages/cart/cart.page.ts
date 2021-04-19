@@ -36,4 +36,7 @@ export class CartPage implements OnInit {
     goOn(){
       this.navControl.navigateBack('categories')
     }
+    checkout(){
+      this.navControl.navigateForward('pick-address')
+    }
 }

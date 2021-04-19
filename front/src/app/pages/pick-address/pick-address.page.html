@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Endereço</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>Selecione um endereço</ion-list-header>
+    <ion-item *ngFor="let address of addresses">
+      <button >
+        <h2>{{address.place}}, {{address.number}}</h2>
+        <p>complement: {{address.complement}} </p>
+        <p>{{address.district}},   CEP {{address.postalCode}} </p>
+        <p>{{address.city}}, {{address.state}}</p>
+      </button>
+    </ion-item>
+    
+  </ion-list>
+</ion-content>

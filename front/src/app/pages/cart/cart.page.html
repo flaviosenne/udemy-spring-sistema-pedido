@@ -28,8 +28,8 @@
     <ion-label class="total">Total:</ion-label>
     <ion-label>{{total()}}</ion-label>
   </ion-item>
-  <ion-button *ngIf="total() > 0" expand="block" color="success"> Finalizar Compra</ion-button>
   <ion-button *ngIf="total() > 0" (click)="goOn()" expand="block" color="primary"> Continuar Comprando</ion-button>
+  <ion-button *ngIf="total() > 0" (click)="checkout()"expand="block" color="success"> Finalizar Compra</ion-button>
   <ion-item *ngIf="total() <= 0">
     <ion-label>Voçê não possui itens no carrinho</ion-label>
   </ion-item>
