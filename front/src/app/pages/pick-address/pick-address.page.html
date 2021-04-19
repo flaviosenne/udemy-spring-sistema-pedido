@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ion-list-header>Selecione um endereço</ion-list-header>
-    <ion-item *ngFor="let address of addresses">
+    <ion-item *ngFor="let address of addresses" (click)="nextPage(address)">
       <button >
         <h2>{{address.place}}, {{address.number}}</h2>
         <p>complement: {{address.complement}} </p>

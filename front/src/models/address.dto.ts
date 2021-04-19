@@ -1,5 +1,5 @@
 export interface AddressDTO{
-    id: string
+    id: number
     place: string
     number: number
     complement: string
