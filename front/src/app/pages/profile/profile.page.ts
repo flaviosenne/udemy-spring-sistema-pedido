@@ -21,7 +21,7 @@ export class ProfilePage implements OnInit {
     if(this.auth.storage.getLocalUser){
       this.clientService.findByEmail(this.auth.storage.getLocalUser().email)
       .subscribe(res => {
-        this.client = res
+        this.client = res as ClientDTO
       }, err => {
         if(err.status == 403){
           this.navCtrl.navigateBack('/')

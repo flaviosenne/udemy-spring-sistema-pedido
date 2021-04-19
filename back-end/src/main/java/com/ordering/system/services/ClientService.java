@@ -121,7 +121,7 @@ public class ClientService {
 //        Optional<City> city = this.cityRepository.findById(client.getCityId());
         Adress adress = new Adress(null, client.getPlace(), 
         client.getNumber(), client.getComplement(), client.getDistrict(),
-        client.getPostalCode(), cli, client.getCity());
+        client.getPostalCode(), client.getState(), cli, client.getCity());
 
         cli.getAdresses().add(adress);
         cli.getPhone().add(client.getPhone1());

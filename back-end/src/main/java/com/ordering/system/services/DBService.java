@@ -168,9 +168,9 @@ public class DBService {
 
                 client1.getPhone().addAll(Arrays.asList("(16)9999-9087", "(16)98583-2314"));
 
-                Adress adress1 = new Adress(null, "Rua das amoras", "1234", "perto da esquina", "Jardim amazonas", "14432-00", client1, "Franca");
-                Adress adress2 = new Adress(null, "Avenida dos carros", "5623", "em frente a loja", "Jardim Salvação","16432-87", client1, "Pedregulho");
-                Adress adress3 = new Adress(null, "Avenida principal", "1200", "em perto da padaria", "Jardim Eterno","16433-87", client2, "São josé da Bela Vista");
+                Adress adress1 = new Adress(null, "Rua das amoras", "1234", "perto da esquina", "Jardim amazonas", "14432-00", "SP", client1, "Franca");
+                Adress adress2 = new Adress(null, "Avenida dos carros", "5623", "em frente a loja", "Jardim Salvação","16432-87", "SP",client1, "Pedregulho");
+                Adress adress3 = new Adress(null, "Avenida principal", "1200", "em perto da padaria", "Jardim Eterno","16433-87", "SP", client2, "São josé da Bela Vista");
 
                 client1.getAdresses().addAll(Arrays.asList(adress1, adress2));
                 client2.getAdresses().addAll(Arrays.asList(adress3));

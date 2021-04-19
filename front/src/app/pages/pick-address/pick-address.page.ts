@@ -1,3 +1,6 @@
+import { ClientService } from './../../../services/domain/client.service';
+import { NavController } from '@ionic/angular';
+import { AuthService } from './../../../services/auth.service';
 import { AddressDTO } from './../../../models/address.dto';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,31 +13,22 @@ export class PickAddressPage implements OnInit {
 
   addresses: AddressDTO[]
 
-  constructor() { }
+  constructor(public auth: AuthService,
+    public navCtrl: NavController,
+    public clientService: ClientService) { }
 
   ngOnInit() {
-    this.addresses = [
-      {
-        id:"1",
-        city:"Franca",
-        complement:"complemento",
-        number:1234,
-        place:"Av martins",
-        postalCode:"12345600",
-        state:"SP",
-        district:"primavera"
-      },
-      {
-        id:"2",
-        city:"Não sei",
-        complement:"complemento",
-        number:1234,
-        place:"Av martins",
-        postalCode:"12345600",
-        state:"MG",
-        district:"primavera"
-      }
-    ]
+    if(this.auth.storage.getLocalUser){
+      this.clientService.findByEmail(this.auth.storage.getLocalUser().email)
+      .subscribe(res => {
+        this.addresses = res['adresses']
+      }, err => {
+        if(err.status == 403){
+          this.navCtrl.navigateBack('/')
+        }
+      })
+    }else{
+      this.navCtrl.navigateBack('/')
+    }
   }
-
 }
