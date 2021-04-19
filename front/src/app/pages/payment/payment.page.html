@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formGroup" (ngSubmit)="nextPage(); $event.preventDefault()">
+
+    <ion-list>
+      <ion-list-header>Tipo de pagamento</ion-list-header>
+      <ion-item>
+        <ion-label position="stacked">Cartão</ion-label>
+        <ion-radio value="paymentWithCard"formControlName="@type">
+        </ion-radio>
+        <ion-label position="stacked">Boleto</ion-label>
+        <ion-radio value="paymentWithTicket"formControlName="@type">
+        </ion-radio>
+      </ion-item>
+    </ion-list>
+
+
+
+
+    <ion-item *ngIf="formGroup.value['@type'] == 'paymentWithCard' ">
+      <ion-label position="stacked">Parcelas no cartão</ion-label>
+      <select class="select" formControlName="plotsNumber">
+        <option *ngFor="let plot of plots; first as f" [value]="plot" [selected]="f">{{plot}}</option>
+      </select>
+      <ion-button type="submit" [disabled]="formGroup.invalid">Próximo</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="formGroup.value['@type'] == 'paymentWithTicket' ">
+      <ion-label position="stacked">Parcelas no boleto</ion-label>
+      <ion-select class="select" formControlName="plotsNumber">
+        <option *ngFor="let plot of plots; first as f" [value]="plot" [selected]="f">{{plot}}</option>
+      </ion-select>
+      <ion-button type="submit" [disabled]="formGroup.invalid">Próximo</ion-button>
+    </ion-item>
+  </form>
+</ion-content>

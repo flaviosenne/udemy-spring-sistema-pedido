@@ -51,6 +51,7 @@ export class PickAddressPage implements OnInit {
 
   nextPage(address: AddressDTO){
     this.request.deliveryAdress = {id: address.id}
-    console.log(this.request)
+    window.localStorage.setItem('request', JSON.stringify(this.request))
+    this.navCtrl.navigateBack('payment')
   }
 }
