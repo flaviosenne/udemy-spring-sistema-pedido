@@ -44,6 +44,10 @@ const routes: Routes = [
     path: 'payment',
     loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
   },
+  {
+    path: 'request-confirmation',
+    loadChildren: () => import('./pages/request-confirmation/request-confirmation.module').then( m => m.RequestConfirmationPageModule)
+  },
 
 
 

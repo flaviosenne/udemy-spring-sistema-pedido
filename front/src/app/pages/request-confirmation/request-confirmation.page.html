@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Confirmação do Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-content>
+      Cliente:
+      <ion-item>
+        <button>
+          <h2>{{client?.name}}</h2>
+          <p>{{client?.cpfOrCnpj}} </p>
+          <p>{{client?.email}} </p>
+          <p>{{client?.phone}} </p>
+        </button>
+      </ion-item>
+      Endereço de Entrega:
+      <ion-item>
+        <button>
+          <h2>{{address?.place}}, {{address?.number}}</h2>
+          <p>complement: {{address?.complement}} </p>
+          <p>{{address?.district}}, CEP {{address?.postalCode}} </p>
+          <p>{{address?.city}}, {{address?.state}}</p>
+        </button>
+      </ion-item>
+      Produtos escolhido:
+      <ion-item *ngFor="let item of cartItems.items">
+        <button>
+          <h2>{{item.product.name}}</h2>
+          <p>quantidade: {{item.quantity}}</p>
+          <p>preço: {{item.product.price | currency}} </p>
+          <p>subtotal: {{item.product.price * item.quantity | currency}} </p>
+        </button>
+      </ion-item>
+      Forma de pagamento
+      <ion-item *ngIf="request.payment['@type'] == 'paymentWithTicket' ">
+        <button>
+          <p>
+            numero de parcelas no boleto: {{request.payment.plotsNumber}}x
+          </p>
+        </button>
+      </ion-item>
+      Forma de pagamento
+      <ion-item *ngIf="request.payment['@type'] == 'paymentWithCard' ">
+        <button>
+          <p>
+            numero de parcelas no cartão: {{request.payment.plotsNumber}}x
+          </p>
+        </button>
+      </ion-item>
+      Total:
+      <ion-item>
+        <button>
+          <h2>{{total() | currency}}</h2>
+        </button>
+      </ion-item>
+    </ion-card-content>
+    <ion-button color="primary" expand="block" (click)="confirmRequest()"> Confirmar Pedido</ion-button>
+
+  </ion-card>
+</ion-content>

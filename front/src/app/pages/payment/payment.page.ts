@@ -32,6 +32,7 @@ export class PaymentPage implements OnInit {
 
   nextPage(){
     this.request.payment = this.formGroup.value
-    console.log(this.request)
+    window.localStorage.setItem('request', JSON.stringify(this.request))
+    this.navControl.navigateBack('request-confirmation')
   }
 }
