@@ -10,6 +10,11 @@
   </ion-fab-button>
 </ion-fab>
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let product of products" (click)="productDetails(product.id)">
     <ion-card-header>
       <ion-card-subtitle>Produto:</ion-card-subtitle>
@@ -17,7 +22,7 @@
     </ion-card-header>
 
     <ion-card-content>
-     {{product.price | currency}}
-</ion-card-content>
-</ion-card>
+      {{product.price | currency}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

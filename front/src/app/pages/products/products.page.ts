@@ -48,4 +48,11 @@ export class ProductsPage implements OnInit {
     return loader
   }
 
+  doRefresh(event) {
+    this.ngOnInit()
+    setTimeout(() => {
+      event.target.complete();
+    }, 500);
+  }
+
 }
