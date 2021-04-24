@@ -1,4 +1,4 @@
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { RequestService } from './../../../services/domain/request.service';
 import { ClientService } from './../../../services/domain/client.service';
 import { AddressDTO } from './../../../models/address.dto';
@@ -25,7 +25,8 @@ export class RequestConfirmationPage implements OnInit {
     public cartService: CartService,
     public clientServie: ClientService,
     public requestService: RequestService,
-    public navControl: NavController) { 
+    public navControl: NavController,
+    public loading: LoadingController) { 
     const request = JSON.parse(window.localStorage.getItem('request'))
     this.request = request
     }
@@ -44,9 +45,13 @@ export class RequestConfirmationPage implements OnInit {
   }
 
   confirmRequest(){
+    let loader = this.presentLoading()
     this.requestService.insert(this.request).subscribe(res => {
       this.cartService.createOrClearCart()
       this.codRequest = this.extractId(res.body)
+      loader.then(res => {
+        res.dismiss()
+      })
       // this.navControl.navigateForward('/cart')
     }, err => {
       if(err.status == 403){
@@ -66,6 +71,17 @@ export class RequestConfirmationPage implements OnInit {
     let position = url.lastIndexOf('/')
     return url.substring(position+1, url.length)
 
+  }
+
+  presentLoading(){
+    let loader = this.loading.create({
+      message: 'Salvando pedido'
+    })
+
+    loader.then(res => {
+      res.present()
+    })
+    return loader
   }
 
 }
