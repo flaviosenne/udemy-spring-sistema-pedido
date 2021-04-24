@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Confirmação do Pedido</ion-title>
+    <ion-title *ngIf="!codRequest">Confirmação do Pedido</ion-title>
+    <ion-title *ngIf="codRequest">Pedido registrado</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-card>
 
-    <ion-card-content>
+    <ion-card-content *ngIf="!codRequest">
       Cliente:
       <ion-item>
         <button>
@@ -58,8 +59,17 @@
         </button>
       </ion-item>
     </ion-card-content>
-    <ion-button color="primary" expand="block" (click)="confirmRequest()"> Confirmar Pedido</ion-button>
-    <ion-button color="primary" expand="block" (click)="back()"> Voltar</ion-button>
-
+    <ion-button *ngIf="!codRequest" color="primary" expand="block" (click)="confirmRequest()"> Confirmar Pedido</ion-button>
+    <ion-button *ngIf="!codRequest" color="primary" expand="block" (click)="backCart()"> Voltar</ion-button>
+    
   </ion-card>
+  <ion-item *ngIf="codRequest">
+    <button (click)="back()">  
+      <p>Seu pedido foi registrado.</p>
+      <h2>Código do pedido: {{codRequest}}.</h2>
+      <p> Verifique seu email</p>
+    </button>
+  </ion-item>
+  <ion-button *ngIf="codRequest" color="primary" expand="block" (click)="backCategories()"> Voltar</ion-button>
+    
 </ion-content>

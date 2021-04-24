@@ -19,6 +19,7 @@ export class RequestConfirmationPage implements OnInit {
   cartItems: CartItems
   client: ClientDTO
   address: AddressDTO 
+  codRequest: string
 
   constructor(public route: ActivatedRoute,
     public cartService: CartService,
@@ -45,8 +46,8 @@ export class RequestConfirmationPage implements OnInit {
   confirmRequest(){
     this.requestService.insert(this.request).subscribe(res => {
       this.cartService.createOrClearCart()
-      console.log(res.body)
-      this.navControl.navigateForward('/cart')
+      this.codRequest = this.extractId(res.body)
+      // this.navControl.navigateForward('/cart')
     }, err => {
       if(err.status == 403){
         this.navControl.navigateRoot('/')
@@ -54,8 +55,17 @@ export class RequestConfirmationPage implements OnInit {
   })
   }
 
-  back(){
+  backCart(){
     this.navControl.navigateForward('/cart')
+  }
+  backCategories(){
+    this.navControl.navigateForward('/categories')
+  }
+
+  extractId(url: string): string{
+    let position = url.lastIndexOf('/')
+    return url.substring(position+1, url.length)
+
   }
 
 }
