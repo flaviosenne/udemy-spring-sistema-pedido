@@ -121,11 +121,31 @@ public class DBService {
                 p11.setId(null);
                 p11.setName("shampoo");
                 p11.setPrice(90.00);
+                Product p12 = new Product();
+                p12.setId(null);
+                p12.setName("teste 1");
+                p12.setPrice(91.00);
+                Product p13 = new Product();
+                p13.setId(null);
+                p13.setName("teste 2");
+                p13.setPrice(92.00);
+                Product p14 = new Product();
+                p14.setId(null);
+                p14.setName("teste 3");
+                p14.setPrice(93.00);
+                Product p15 = new Product();
+                p15.setId(null);
+                p15.setName("teste 4");
+                p15.setPrice(94.00);
+                Product p16 = new Product();
+                p16.setId(null);
+                p16.setName("teste 5");
+                p16.setPrice(95.00);
 
                 cat1.getProducts().addAll(Arrays.asList(p1, p2, p3));
                 cat2.getProducts().addAll(Arrays.asList(p2, p4));
                 cat3.getProducts().addAll(Arrays.asList(p5, p6));
-                cat4.getProducts().addAll(Arrays.asList(p1, p2, p3, p7));
+                cat4.getProducts().addAll(Arrays.asList(p1, p2, p3, p7, p12, p13, p14, p15, p16));
                 cat5.getProducts().addAll(Arrays.asList(p8));
                 cat6.getProducts().addAll(Arrays.asList(p9, p10));
                 cat7.getProducts().addAll(Arrays.asList(p11));
@@ -141,9 +161,14 @@ public class DBService {
                 p9.getCategories().addAll(Arrays.asList(cat6));
                 p10.getCategories().addAll(Arrays.asList(cat6));
                 p11.getCategories().addAll(Arrays.asList(cat7));
+                p12.getCategories().addAll(Arrays.asList(cat4));
+                p13.getCategories().addAll(Arrays.asList(cat4));
+                p14.getCategories().addAll(Arrays.asList(cat4));
+                p15.getCategories().addAll(Arrays.asList(cat4));
+                p16.getCategories().addAll(Arrays.asList(cat4));
 
                 this.categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
-                this.productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
+                this.productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16));
 
                 State state1 = new State();
                 State state2 = new State();
