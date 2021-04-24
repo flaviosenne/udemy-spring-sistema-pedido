@@ -42,14 +42,14 @@ public class SendEmailService {
 
     protected SimpleMailMessage prepareSimpleMailMesageFromRequests(Requests requests){
         Context context = new Context();
-        context.setVariable("request", requests.toString());
+        context.setVariable("request", requests);
 
         SimpleMailMessage sm = new SimpleMailMessage();
         sm.setTo(requests.getClient().getEmail());
         sm.setFrom(this.sender);
         sm.setSubject("Pedido Confirmado cod: "+ requests.getId());
         sm.setSentDate(new Date(System.currentTimeMillis()));
-        sm.setText(String.valueOf(context));
+        sm.setText(context.toString());
         System.out.println(sm);
         return sm;
     }

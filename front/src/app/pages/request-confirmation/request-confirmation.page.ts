@@ -1,3 +1,5 @@
+import { NavController } from '@ionic/angular';
+import { RequestService } from './../../../services/domain/request.service';
 import { ClientService } from './../../../services/domain/client.service';
 import { AddressDTO } from './../../../models/address.dto';
 import { ClientDTO } from './../../../models/client.dto';
@@ -20,7 +22,9 @@ export class RequestConfirmationPage implements OnInit {
 
   constructor(public route: ActivatedRoute,
     public cartService: CartService,
-    public clientServie: ClientService) { 
+    public clientServie: ClientService,
+    public requestService: RequestService,
+    public navControl: NavController) { 
     const request = JSON.parse(window.localStorage.getItem('request'))
     this.request = request
     }
@@ -31,10 +35,6 @@ export class RequestConfirmationPage implements OnInit {
     this.clientServie.findById(this.request.client.id).subscribe(res => {
       this.client = res as ClientDTO
       this.address = res['adresses'].filter(res => this.request.deliveryAdress.id == res.id)[0]
-      console.log('client ', this.client)
-      console.log('address ', this.address)
-      console.log('cart ', this.cartItems)
-      console.log('request ', this.request)
     })
   }
 
@@ -43,7 +43,19 @@ export class RequestConfirmationPage implements OnInit {
   }
 
   confirmRequest(){
-    console.log("finish")
+    this.requestService.insert(this.request).subscribe(res => {
+      this.cartService.createOrClearCart()
+      console.log(res.body)
+      this.navControl.navigateForward('/cart')
+    }, err => {
+      if(err.status == 403){
+        this.navControl.navigateRoot('/')
+      }
+  })
+  }
+
+  back(){
+    this.navControl.navigateForward('/cart')
   }
 
 }

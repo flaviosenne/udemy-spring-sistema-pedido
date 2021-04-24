@@ -1,3 +1,4 @@
+import { RequestService } from './../../../services/domain/request.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,9 @@ import { RequestConfirmationPage } from './request-confirmation.page';
     IonicModule,
     RequestConfirmationPageRoutingModule
   ],
-  declarations: [RequestConfirmationPage]
+  declarations: [RequestConfirmationPage],
+  providers:[
+    RequestService
+  ]
 })
 export class RequestConfirmationPageModule {}

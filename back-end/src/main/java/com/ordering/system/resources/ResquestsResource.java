@@ -29,11 +29,11 @@ public class ResquestsResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(@Valid @RequestBody Requests requests){
+    public ResponseEntity<URI> save(@Valid @RequestBody Requests requests){
         Requests categorySaved = this.requestService.saveRequests(requests);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(categorySaved.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.ok(uri);
     }
 
     @GetMapping
