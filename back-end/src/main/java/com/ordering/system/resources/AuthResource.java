@@ -12,6 +12,7 @@ import com.ordering.system.services.AuthService;
 import com.ordering.system.services.ClientService;
 import com.ordering.system.services.UserService;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -33,6 +34,7 @@ public class AuthResource {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @ApiOperation(value = "Atualizar token")
     @PostMapping(value = "/refresh-token")
     public ResponseEntity<Void> refreshToken(HttpServletResponse res){
         UserSpringSecurity user = UserService.authenticated();
@@ -41,6 +43,7 @@ public class AuthResource {
         return ResponseEntity.noContent().build();
     }
 
+    @ApiOperation(value = "Sair da seção")
     @PostMapping(value = "/forgot")
     public ResponseEntity<Void> forgot(@RequestBody EmailDTO user){
         this.authService.sendNewPassword(user.getEmail());
@@ -48,6 +51,7 @@ public class AuthResource {
     }
 
 
+    @ApiOperation(value = "Logar na aplicação")
     @PostMapping(value = "/login")
     public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO user){
         Client client = clientService.getClientByEmail(user.getEmail()).getBody();

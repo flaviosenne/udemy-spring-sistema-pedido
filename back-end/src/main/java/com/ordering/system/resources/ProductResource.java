@@ -7,6 +7,7 @@ import com.ordering.system.domains.Product;
 import com.ordering.system.dto.ProductDTO;
 import com.ordering.system.resources.utils.URL;
 import com.ordering.system.services.ProductService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,13 @@ public class ProductResource {
     @Autowired
     ProductService productService;
 
+    @ApiOperation(value = "Buscar produto por id")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Product> getRequestById(@PathVariable Integer id){
         return ResponseEntity.ok(this.productService.findProducttById(id));
     }
+
+    @ApiOperation(value = "Buscar lista de produstos paginado")
     @GetMapping
     public ResponseEntity<Page<ProductDTO>> findPage(
             @RequestParam(value = "name", defaultValue ="") String name,
